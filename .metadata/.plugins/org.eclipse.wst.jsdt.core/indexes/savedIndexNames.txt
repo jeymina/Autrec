@@ -1,2 +1,0 @@
-INDEX VERSION 1.3+/home/william/Documents/ETUDES/M2TIIL/S3/JEE_Git/Autrec/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-283154332.index
