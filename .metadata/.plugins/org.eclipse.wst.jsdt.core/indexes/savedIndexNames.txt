@@ -1,6 +1,8 @@
-INDEX VERSION 1.3+D:\FAC\Git_Repo_Restaurant\Autrec\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2209271758.index
-573538770.index
-1550011947.index
-2880088697.index
-900087007.index
+INDEX VERSION 1.3+/home/william/Documents/ETUDES/M2TIIL/S3/JEE_Git/Autrec/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+616735624.index
+2405052361.index
+283154332.index
+2614887497.index
+3423181937.index
+1718775771.index
+2709550451.index
