@@ -1,8 +1,12 @@
 package serveur.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import serveur.bean.Utilisateur;
 
 public class DAO {
 
@@ -11,7 +15,7 @@ public class DAO {
 
 	public void ouvrir() {
 		try {
-			emf = Persistence.createEntityManagerFactory("tphibernate");
+			emf = Persistence.createEntityManagerFactory("restoKevina");
 			em = emf.createEntityManager();		
 		}
 		catch (Exception e) {
@@ -30,4 +34,13 @@ public class DAO {
 		}
 
 	}
+	
+	
+	public List<Utilisateur> listerUtilisateur() {
+		List <Utilisateur> lst = em.createQuery("select c from Utilisateur c").getResultList();
+		return lst;
+	}
+	
+	
+	
 }
