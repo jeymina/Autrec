@@ -28,7 +28,7 @@ public class Mode implements Serializable {
 	private String nom;
 	
 	@OneToMany(mappedBy="paiementMode")
-	private Collection<Paiement> commande = new ArrayList<Paiement>();
+	private Collection<Paiement> listCommande = new ArrayList<Paiement>();
 
 	public Integer getId() {
 		return id;
@@ -47,11 +47,11 @@ public class Mode implements Serializable {
 	}
 
 	public Collection<Paiement> getCommande() {
-		return commande;
+		return listCommande;
 	}
 
-	public void setCommande(Collection<Paiement> commande) {
-		this.commande = commande;
+	public void setCommande(Collection<Paiement> listCommande) {
+		this.listCommande = listCommande;
 	}
 	
 }
