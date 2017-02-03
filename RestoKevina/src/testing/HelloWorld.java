@@ -12,7 +12,6 @@ import serveur.dao.DAO;
 public class HelloWorld {
 
 	public static void main(String[] args) {
-		System.out.println("coucou");
 
 		DAO dao = new DAO();
 		dao.ouvrir();
