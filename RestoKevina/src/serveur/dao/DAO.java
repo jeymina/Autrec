@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import serveur.bean.Plat;
 import serveur.bean.Utilisateur;
 
 public class DAO {
@@ -35,12 +36,21 @@ public class DAO {
 
 	}
 	
+	public List<Object> getListFromRequest(String request){
+		return em.createQuery(request).getResultList();
+	}
+	
+	
 	
 	public List<Utilisateur> listerUtilisateur() {
-		List <Utilisateur> lst = em.createQuery("select c from Utilisateur c").getResultList();
+		List <Utilisateur> lst = em.createQuery("select a from Utilisateur a").getResultList();
 		return lst;
 	}
 	
+	public List<Plat> listerPlat() {
+		List <Plat> lst = em.createQuery("select a from Plat a").getResultList();
+		return lst;
+	}
 	
 	
 }

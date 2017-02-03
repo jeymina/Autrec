@@ -22,19 +22,59 @@ public class Paiement implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="paie_id")
 	private Integer id;
-	
+
 	@Column(name="paie_montant")
 	private float montant;
-	
+
 	@Column(name="paie_date")
 	private Timestamp datePaiement;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "paie_mode")
-	private Mode mode;
-	
+	private Mode paiementMode;
+
 	@ManyToOne
 	@JoinColumn(name = "paie_com")
-	private Commande commande;
+	private Commande paiementCom;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public float getMontant() {
+		return montant;
+	}
+
+	public void setMontant(float montant) {
+		this.montant = montant;
+	}
+
+	public Timestamp getDatePaiement() {
+		return datePaiement;
+	}
+
+	public void setDatePaiement(Timestamp datePaiement) {
+		this.datePaiement = datePaiement;
+	}
+
+	public Mode getPaiementMode() {
+		return paiementMode;
+	}
+
+	public void setPaiementMode(Mode paiementMode) {
+		this.paiementMode = paiementMode;
+	}
+
+	public Commande getPaiementCom() {
+		return paiementCom;
+	}
+
+	public void setPaiementCom(Commande paiementCom) {
+		this.paiementCom = paiementCom;
+	}
 	
 }

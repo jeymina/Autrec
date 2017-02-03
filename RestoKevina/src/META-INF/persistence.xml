@@ -5,9 +5,9 @@
     <persistence-unit name="restoKevina" >
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.username" value="zruellese" />
-            <property name="hibernate.connection.password" value="yjwrxhxg" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://obiwan2.univ-brest.fr:3306/ztm2-zruellese" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/restokevina" />
             <property name="hibernate.show_sql" value="true" />
             
         </properties>
