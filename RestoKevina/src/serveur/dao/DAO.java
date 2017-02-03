@@ -1,26 +1,28 @@
 package serveur.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import serveur.bean.Utilisateur;
+import javax.persistence.PersistenceContext;
 
 public class DAO {
 
+	@PersistenceContext
 	EntityManagerFactory emf = null;
-	EntityManager em = null;
+	@PersistenceContext
+	static EntityManager em;
 
-	public void ouvrir() {
+	public EntityManager getEM() {
 		try {
-			emf = Persistence.createEntityManagerFactory("restoKevina");
-			em = emf.createEntityManager();		
+			if (em == null){
+				emf = Persistence.createEntityManagerFactory("restoKevina");
+				em = emf.createEntityManager();		
+			}
 		}
 		catch (Exception e) {
-			System.out.println("Erreur DAO.ouvrir "+e.getMessage());
+			System.out.println("Erreur DAO.getEM "+e.getMessage());
 		}
+		return em;
 
 	}
 
@@ -34,13 +36,5 @@ public class DAO {
 		}
 
 	}
-	
-	
-	public List<Utilisateur> listerUtilisateur() {
-		List <Utilisateur> lst = em.createQuery("select c from Utilisateur c").getResultList();
-		return lst;
-	}
-	
-	
-	
+
 }
