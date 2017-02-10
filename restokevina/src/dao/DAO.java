@@ -8,11 +8,11 @@ import javax.persistence.PersistenceContext;
 public class DAO {
 
 	@PersistenceContext
-	EntityManagerFactory emf = null;
+	static EntityManagerFactory emf = null;
 	@PersistenceContext
 	static EntityManager em;
 
-	public EntityManager getEM() {
+	public static EntityManager getEM() {
 		try {
 			if (em == null){
 				emf = Persistence.createEntityManagerFactory("restoKevina");
