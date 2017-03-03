@@ -57,24 +57,24 @@ INSERT INTO `l_ing_plat` (`lingplat_plat`, `lingplat_ing`, `ing_portion`, `ing_m
 INSERT INTO `l_ing_plat` (`lingplat_plat`, `lingplat_ing`, `ing_portion`, `ing_montant`) VALUES ('4', '3', '100', '13.00');
 INSERT INTO `l_ing_plat` (`lingplat_plat`, `lingplat_ing`, `ing_portion`, `ing_montant`) VALUES ('4', '4', '15', '2.00');
 
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('1', 'Sans oignons');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('2', 'Cuisson à point');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('3', 'Cuisson saignante');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('4', 'Sans Tomates');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('5', 'Sauce au Bleu');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('6', 'Sauce Mayo');
-INSERT INTO `supplement` (`opt_id`, `opt_nom`) VALUES ('7', 'Sauce Ketchup');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('1', 'Sans oignons');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('2', 'Cuisson à point');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('3', 'Cuisson saignante');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('4', 'Sans Tomates');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('5', 'Sauce au Bleu');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('6', 'Sauce Mayo');
+INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('7', 'Sauce Ketchup');
 
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '2');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '1');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '3');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '5');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '6');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('1', '7');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('2', '4');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('3', '1');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('3', '4');
-INSERT INTO `l_opt_plat` (`loptplat_plat`, `loptplat_opt`) VALUES ('4', '1');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '2');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '1');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '3');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '5');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '6');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '7');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('2', '4');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('3', '1');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('3', '4');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('4', '1');
 
 INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) VALUES ('1', '1', '2');
 INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) VALUES ('1', '2', '1');
