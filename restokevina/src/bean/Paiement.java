@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Paiement")
 public class Paiement implements Serializable{
@@ -33,6 +35,7 @@ public class Paiement implements Serializable{
 	@JoinColumn(name = "paie_mode")
 	private Mode paiementMode;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "paie_com")
 	private Commande paiementCom;

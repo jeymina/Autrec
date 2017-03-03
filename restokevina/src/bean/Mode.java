@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
 @Table(name = "Mode")
 public class Mode implements Serializable {
@@ -24,13 +25,13 @@ public class Mode implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="mode_id")
 	private Integer id;
-
+	
 	@Column(name="mode_nom")
 	private String nom;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="paiementMode")
-	private Collection<Paiement> listCommande = new ArrayList<Paiement>();
+	@JsonIgnore
+	private Collection<Paiement> mode_listPaiement = new ArrayList<Paiement>();
 
 	public Integer getId() {
 		return id;
@@ -48,12 +49,14 @@ public class Mode implements Serializable {
 		this.nom = nom;
 	}
 
-	public Collection<Paiement> getCommande() {
-		return listCommande;
+	public Collection<Paiement> getMode_listPaiement() {
+		return mode_listPaiement;
 	}
 
-	public void setCommande(Collection<Paiement> listCommande) {
-		this.listCommande = listCommande;
+	public void setMode_listPaiement(Collection<Paiement> mode_listPaiement) {
+		this.mode_listPaiement = mode_listPaiement;
 	}
+
+
 	
 }

@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Plat")
 public class Plat  implements Serializable{
@@ -25,6 +27,7 @@ public class Plat  implements Serializable{
 	@JoinColumn(name = "plat_cat")
 	private Categorie platCat;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="complatPlat")
 	private Collection<Com_Plat> listComPlat = new ArrayList<Com_Plat>();
 	

@@ -9,12 +9,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "l_ing_plat")
 public class Ing_Plat implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@JsonIgnore
 	@Id
 	@ManyToOne
 	@JoinColumn(name="lingplat_plat")

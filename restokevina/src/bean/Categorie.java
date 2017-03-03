@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Categorie")
 public class Categorie implements Serializable {
@@ -26,6 +28,7 @@ public class Categorie implements Serializable {
 	@Column(name="cat_nom")
 	private String nom;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="platCat")
 	private Collection<Plat> listPlat = new ArrayList<Plat>();
 
