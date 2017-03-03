@@ -8,7 +8,7 @@ import bean.Utilisateur;
 
 public class UtilisateurDAO {
 
-	public static List<Utilisateur> getUtilisateurs() {
+	public static List<Utilisateur> getListeUtilisateur() {
 		String req = "SELECT a FROM Utilisateur a";
 		TypedQuery<Utilisateur> query = DAO.getEM().createQuery(req, Utilisateur.class);
 		return query.getResultList();

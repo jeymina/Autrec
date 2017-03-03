@@ -14,6 +14,6 @@ import dao.UtilisateurDAO;
 public class UtilisateurControle {
 	@RequestMapping(value="/lesutilisateurs", method=RequestMethod.GET)
 	public @ResponseBody List<Utilisateur> listerUtilisateur() {
-		return UtilisateurDAO.getUtilisateurs();
+		return UtilisateurDAO.getListeUtilisateur();
 	}
 }
