@@ -3,27 +3,24 @@ package dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DAO {
 
-	@PersistenceContext
 	EntityManagerFactory emf = null;
-	@PersistenceContext
 	static EntityManager em;
 
-	public EntityManager getEM() {
-		try {
-			if (em == null){
-				emf = Persistence.createEntityManagerFactory("restoKevina");
-				em = emf.createEntityManager();		
-			}
-		}
-		catch (Exception e) {
-			System.out.println("Erreur DAO.getEM "+e.getMessage());
-		}
+	public DAO() {
+		System.out.println("DAO opening");
+		emf = Persistence.createEntityManagerFactory("restokevina");
+		em = emf.createEntityManager();
+		System.out.println("DAO opened");
+	}
+	
+	public static EntityManager getEM(){
 		return em;
-
 	}
 
 	public void fermer() {

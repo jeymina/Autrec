@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "Utilisateur")
@@ -35,6 +37,7 @@ public class Utilisateur implements Serializable {
 	@JoinColumn(name = "util_adr")
 	private Adresse utilisateurAdr;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="commandeUtil")
 	private Collection<Commande> commande = new ArrayList<Commande>();
 
