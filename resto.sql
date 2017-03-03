@@ -4,9 +4,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
 -- -----------------------------------------------------
--- Table `Adresse`
+-- Table `adresse`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Adresse` (
+CREATE TABLE IF NOT EXISTS `adresse` (
   `adr_id` INT(11) NOT NULL,
   `adr_voirie` VARCHAR(255) NULL,
   `adr_cp` VARCHAR(5) NULL,
@@ -15,9 +15,9 @@ CREATE TABLE IF NOT EXISTS `Adresse` (
 
 
 -- -----------------------------------------------------
--- Table `Utilisateur`
+-- Table `utilisateur`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Utilisateur` (
+CREATE TABLE IF NOT EXISTS `utilisateur` (
   `util_id` INT(11) NOT NULL,
   `util_nom` VARCHAR(50) NOT NULL,
   `util_prenom` VARCHAR(50) NOT NULL,
@@ -28,15 +28,15 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   INDEX `fk_util_adr_idx` (`util_adr` ASC),
   CONSTRAINT `fk_util_adr`
     FOREIGN KEY (`util_adr`)
-    REFERENCES `Adresse` (`adr_id`)
+    REFERENCES `adresse` (`adr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Commande`
+-- Table `commande`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Commande` (
+CREATE TABLE IF NOT EXISTS `commande` (
   `com_id` INT(11) NOT NULL,
   `com_date_validation` TIMESTAMP NULL,
   `com_date_livraison` TIMESTAMP NULL,
@@ -47,29 +47,29 @@ CREATE TABLE IF NOT EXISTS `Commande` (
   INDEX `fk_com_adr_idx` (`com_adr` ASC),
   CONSTRAINT `fk_com_util`
     FOREIGN KEY (`com_util`)
-    REFERENCES `Utilisateur` (`util_id`)
+    REFERENCES `utilisateur` (`util_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_com_adr`
     FOREIGN KEY (`com_adr`)
-    REFERENCES `Adresse` (`adr_id`)
+    REFERENCES `adresse` (`adr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Mode`
+-- Table `mode`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Mode` (
+CREATE TABLE IF NOT EXISTS `mode` (
   `mode_id` INT(11) NOT NULL,
   `mode_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`mode_id`));
 
 
 -- -----------------------------------------------------
--- Table `Paiement`
+-- Table `paiement`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Paiement` (
+CREATE TABLE IF NOT EXISTS `paiement` (
   `paie_id` INT(11) NOT NULL,
   `paie_montant` DECIMAL(10,2) NOT NULL,
   `paie_date` TIMESTAMP NOT NULL,
@@ -80,29 +80,29 @@ CREATE TABLE IF NOT EXISTS `Paiement` (
   INDEX `fk_paie_com_idx` (`paie_com` ASC),
   CONSTRAINT `fk_paie_mode`
     FOREIGN KEY (`paie_mode`)
-    REFERENCES `Mode` (`mode_id`)
+    REFERENCES `mode` (`mode_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_paie_com`
     FOREIGN KEY (`paie_com`)
-    REFERENCES `Commande` (`com_id`)
+    REFERENCES `commande` (`com_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Categorie`
+-- Table `categorie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Categorie` (
+CREATE TABLE IF NOT EXISTS `categorie` (
   `cat_id` INT(11) NOT NULL,
   `cat_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`cat_id`));
 
 
 -- -----------------------------------------------------
--- Table `Plat`
+-- Table `plat`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Plat` (
+CREATE TABLE IF NOT EXISTS `plat` (
   `plat_id` INT(11) NOT NULL,
   `plat_nom` VARCHAR(50) NOT NULL,
   `plat_cat` INT(11) NOT NULL,
@@ -110,24 +110,24 @@ CREATE TABLE IF NOT EXISTS `Plat` (
   INDEX `fk_plat_cat_idx` (`plat_cat` ASC),
   CONSTRAINT `fk_plat_cat`
     FOREIGN KEY (`plat_cat`)
-    REFERENCES `Categorie` (`cat_id`)
+    REFERENCES `categorie` (`cat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `Supplement`
+-- Table `supplement`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Supplement` (
-  `opt_id` INT(11) NOT NULL,
-  `opt_nom` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`opt_id`));
+CREATE TABLE IF NOT EXISTS `supplement` (
+  `sup_id` INT(11) NOT NULL,
+  `sup_nom` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`sup_id`));
 
 
 -- -----------------------------------------------------
--- Table `Ingredient`
+-- Table `ingredient`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Ingredient` (
+CREATE TABLE IF NOT EXISTS `ingredient` (
   `ing_id` INT(11) NOT NULL,
   `ing_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ing_id`));
@@ -145,32 +145,32 @@ CREATE TABLE IF NOT EXISTS `l_ing_plat` (
   INDEX `fk_l_ing_idx` (`lingplat_ing` ASC),
   CONSTRAINT `fk_lingplat_plat`
     FOREIGN KEY (`lingplat_plat`)
-    REFERENCES `Plat` (`plat_id`)
+    REFERENCES `plat` (`plat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_lingplat_ing`
     FOREIGN KEY (`lingplat_ing`)
-    REFERENCES `Ingredient` (`ing_id`)
+    REFERENCES `ingredient` (`ing_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
--- Table `l_opt_plat`
+-- Table `l_sup_plat`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `l_opt_plat` (
-  `loptplat_plat` INT(11) NOT NULL,
-  `loptplat_opt` INT(11) NOT NULL,
-  PRIMARY KEY (`loptplat_plat`, `loptplat_opt`),
-  INDEX `fk_loptplat_opt_idx` (`loptplat_opt` ASC),
-  CONSTRAINT `fk_loptplat_plat`
-    FOREIGN KEY (`loptplat_plat`)
-    REFERENCES `Plat` (`plat_id`)
+CREATE TABLE IF NOT EXISTS `l_sup_plat` (
+  `lsupplat_plat` INT(11) NOT NULL,
+  `lsupplat_sup` INT(11) NOT NULL,
+  PRIMARY KEY (`lsupplat_plat`, `lsupplat_sup`),
+  INDEX `fk_lsupplat_sup_idx` (`lsupplat_sup` ASC),
+  CONSTRAINT `fk_lsupplat_plat`
+    FOREIGN KEY (`lsupplat_plat`)
+    REFERENCES `plat` (`plat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_loptplat_opt`
-    FOREIGN KEY (`loptplat_opt`)
-    REFERENCES `Supplement` (`opt_id`)
+  CONSTRAINT `fk_lsupplat_sup`
+    FOREIGN KEY (`lsupplat_sup`)
+    REFERENCES `supplement` (`sup_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -186,12 +186,12 @@ CREATE TABLE IF NOT EXISTS `l_com_plat` (
   INDEX `fk_lcomplat_plat_idx` (`lcomplat_plat` ASC),
   CONSTRAINT `fk_lcomplat_com`
     FOREIGN KEY (`lcomplat_com`)
-    REFERENCES `Commande` (`com_id`)
+    REFERENCES `commande` (`com_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_lcomplat_plat`
     FOREIGN KEY (`lcomplat_plat`)
-    REFERENCES `Plat` (`plat_id`)
+    REFERENCES `plat` (`plat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
