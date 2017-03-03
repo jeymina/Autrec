@@ -1,0 +1,27 @@
+
+md-content .ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0;
+ }
+
+#slides_control > div{
+  height: 200px;
+}
+
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}
+
+#carousel{
+background-color: #000000;
+
+}
