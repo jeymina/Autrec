@@ -25,7 +25,7 @@ public class Opt_Plat implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="loptplat_opt")
-	private Option optplatOpt;
+	private Supplement optplatOpt;
 
 	public Plat getOptplatPlat() {
 		return optplatPlat;
@@ -35,11 +35,11 @@ public class Opt_Plat implements Serializable {
 		this.optplatPlat = optplatPlat;
 	}
 
-	public Option getOptplatOpt() {
+	public Supplement getOptplatOpt() {
 		return optplatOpt;
 	}
 
-	public void setOptplatOpt(Option optplatOpt) {
+	public void setOptplatOpt(Supplement optplatOpt) {
 		this.optplatOpt = optplatOpt;
 	}
 	

@@ -15,17 +15,17 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Option")
-public class Option implements Serializable{
+@Table(name = "Supplement")
+public class Supplement implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cat_id")
+	@Column(name="opt_id")
 	private int id;
 	
-	@Column(name="cat_nom")
+	@Column(name="opt_nom")
 	private String nom;
 	
 	@JsonIgnore
@@ -55,5 +55,6 @@ public class Option implements Serializable{
 	public void setListOptplat(Collection<Opt_Plat> listOptplat) {
 		this.listOptplat = listOptplat;
 	}
+
 
 }

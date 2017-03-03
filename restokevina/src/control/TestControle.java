@@ -12,7 +12,7 @@ import bean.Categorie;
 import bean.Commande;
 import bean.Ingredient;
 import bean.Mode;
-import bean.Option;
+import bean.Supplement;
 import bean.Paiement;
 import bean.Plat;
 import bean.Utilisateur;
@@ -21,7 +21,7 @@ import dao.CategorieDAO;
 import dao.CommandeDAO;
 import dao.IngredientDAO;
 import dao.ModeDAO;
-import dao.OptionDAO;
+import dao.SupplementDAO;
 import dao.PaiementDAO;
 import dao.PlatDAO;
 import dao.UtilisateurDAO;
@@ -42,7 +42,7 @@ public class TestControle {
 		return CategorieDAO.getListeCategorie();
 	}
 	
-	//  TODO KO
+	// OK
 	@RequestMapping(value="/testingComm", method=RequestMethod.GET)
 	public @ResponseBody List<Commande> testingComm() {
 		return CommandeDAO.getListeCommande();
@@ -60,10 +60,10 @@ public class TestControle {
 		return ModeDAO.getListeMode();
 	}
 	
-	// TODO KO
-	@RequestMapping(value="/testingOpt", method=RequestMethod.GET)
-	public @ResponseBody List<Option> testingOpt() {
-		return OptionDAO.getListeOption();
+	// OK
+	@RequestMapping(value="/testingSupp", method=RequestMethod.GET)
+	public @ResponseBody List<Supplement> testingOpt() {
+		return SupplementDAO.getListeSupplement();
 	}
 	
 	// OK
@@ -72,7 +72,7 @@ public class TestControle {
 		return PaiementDAO.getListePaiement();
 	}
 	
-	// TODO KO
+	// OKL
 	@RequestMapping(value="/testingPlat", method=RequestMethod.GET)
 	public @ResponseBody List<Plat> testingPlat() {
 		return PlatDAO.getListePlat();

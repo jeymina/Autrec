@@ -116,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `Plat` (
 
 
 -- -----------------------------------------------------
--- Table `Option`
+-- Table `Supplement`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Option` (
+CREATE TABLE IF NOT EXISTS `Supplement` (
   `opt_id` INT(11) NOT NULL,
   `opt_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`opt_id`));
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `l_opt_plat` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_loptplat_opt`
     FOREIGN KEY (`loptplat_opt`)
-    REFERENCES `Option` (`opt_id`)
+    REFERENCES `Supplement` (`opt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
