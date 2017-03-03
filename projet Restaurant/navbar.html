@@ -1,22 +1,21 @@
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
-		
+<html>
 
-		<!-- The main CSS file -->
+<head>
 	<link href="navbar.css" rel="stylesheet" />
+</head>
+<!-- The ng-app directive tells angular that the code below should be evaluated -->
 
-	<!-- The ng-app directive tells angular that the code below should be evaluated -->
-
-	<body ng-app="monAppli" ng-controller="appCtrl">
-<!-- ng-click="$event.preventDefault()"> -->
+<body ng-app="monAppli" ng-controller="appCtrl">
+	<!-- ng-click="$event.preventDefault()"> -->
 		<!-- The navigation menu will get the value of the "active" variable as a class.
-			 The $event.preventDefault() stops the page from jumping when a link is clicked. -->
+		The $event.preventDefault() stops the page from jumping when a link is clicked. -->
 
-		<nav class="{{active}}"    bs-active-link>
+		<nav class="{{active}}">
 
-			<!-- When a link in the menu is clicked, we set the active variable -->
+			<!-- When a link in the menu is clicked, we set the active variable bs-active-link -->
 
-			<a href = "#/home" class="accueil" > Home</a>
-	
+			<a href="#/home" class="accueil" > Home</a>
+
 			<a href="#/entrees" class="entrees" >Entrees</a>
 			<a href="#/plats" class="plats" >Plats</a>
 			<a href="#/Desserts" class="desserts">Desserts</a>
@@ -27,9 +26,6 @@
 			 initially, this will cause the first paragraph to be visible. -->
 
 
-		<p ng-show="sessionStorage.active">You chose <b>{{active}}</b></p>
-
-		<!-- Include AngularJS from Google's CDN -->
-
+			 <p ng-show="sessionStorage.active">You chose <b>{{active}}</b></p> -->
 	</body>
 </html>
