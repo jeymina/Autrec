@@ -34,8 +34,8 @@ public class Plat  implements Serializable{
 	@OneToMany(mappedBy="ingplatPlat")
 	private Collection<Ing_Plat> listIngPlat = new ArrayList<Ing_Plat>();
 	
-	@OneToMany(mappedBy="optplatPlat")
-	private Collection<Opt_Plat> listOptPlat = new ArrayList<Opt_Plat>();
+	@OneToMany(mappedBy="supplatPlat")
+	private Collection<Sup_Plat> listSupPlat = new ArrayList<Sup_Plat>();
 
 	public int getId() {
 		return id;
@@ -77,12 +77,13 @@ public class Plat  implements Serializable{
 		this.listIngPlat = listIngPlat;
 	}
 
-	public Collection<Opt_Plat> getListOptPlat() {
-		return listOptPlat;
+	public Collection<Sup_Plat> getListSupPlat() {
+		return listSupPlat;
 	}
 
-	public void setListOptPlat(Collection<Opt_Plat> listOptPlat) {
-		this.listOptPlat = listOptPlat;
+	public void setListSupPlat(Collection<Sup_Plat> listSupPlat) {
+		this.listSupPlat = listSupPlat;
 	}
+
 
 }

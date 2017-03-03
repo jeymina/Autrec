@@ -22,15 +22,15 @@ public class Supplement implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="opt_id")
+	@Column(name="sup_id")
 	private int id;
 	
-	@Column(name="opt_nom")
+	@Column(name="sup_nom")
 	private String nom;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="optplatOpt")
-	private Collection<Opt_Plat> listOptplat = new ArrayList<Opt_Plat>();
+	@OneToMany(mappedBy="supplatSup")
+	private Collection<Sup_Plat> listSupplat = new ArrayList<Sup_Plat>();
 
 	public int getId() {
 		return id;
@@ -48,13 +48,15 @@ public class Supplement implements Serializable{
 		this.nom = nom;
 	}
 
-	public Collection<Opt_Plat> getListOptplat() {
-		return listOptplat;
+	public Collection<Sup_Plat> getListSupplat() {
+		return listSupplat;
 	}
 
-	public void setListOptplat(Collection<Opt_Plat> listOptplat) {
-		this.listOptplat = listOptplat;
+	public void setListSupplat(Collection<Sup_Plat> listSupplat) {
+		this.listSupplat = listSupplat;
 	}
+
+
 
 
 }
