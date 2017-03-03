@@ -12,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Mode")
 public class Mode implements Serializable {
-
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +28,7 @@ public class Mode implements Serializable {
 	@Column(name="mode_nom")
 	private String nom;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="paiementMode")
 	private Collection<Paiement> listCommande = new ArrayList<Paiement>();
 
