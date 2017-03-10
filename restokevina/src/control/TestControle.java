@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Adresse;
@@ -72,7 +73,7 @@ public class TestControle {
 		return PaiementDAO.getListePaiement();
 	}
 	
-	// OKL
+	// OK
 	@RequestMapping(value="/testingPlat", method=RequestMethod.GET)
 	public @ResponseBody List<Plat> testingPlat() {
 		return PlatDAO.getListePlat();
@@ -81,5 +82,10 @@ public class TestControle {
 	@RequestMapping(value="/testingUtil", method=RequestMethod.GET)
 	public @ResponseBody List<Utilisateur> testingUtil() {
 		return UtilisateurDAO.getListeUtilisateur();
+	}
+	
+	@RequestMapping(value="/testingAdrByAdr", method=RequestMethod.GET)
+	public @ResponseBody List<Adresse> testingAdrByAdr(@RequestParam ("ville") String ville, @RequestParam ("cp") String cp, @RequestParam ("rue") String rue) {
+		return AdresseDAO.getAdresse(ville, cp, rue);
 	}
 }
