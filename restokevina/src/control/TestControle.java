@@ -34,7 +34,7 @@ public class TestControle {
 	// OK
 	@RequestMapping(value="/testingAdr", method=RequestMethod.GET)
 	public @ResponseBody List<Adresse> testingAdr() {
-		return AdresseDAO.getLesAdresses();
+		return AdresseDAO.getListeAdresse();
 	}
 	
 	// OK

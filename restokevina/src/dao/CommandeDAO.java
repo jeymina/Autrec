@@ -14,4 +14,26 @@ public class CommandeDAO {
 		return query.getResultList();
 	}
 	
+	public Commande getCommandeById(int id) {
+		Commande uneCommande = DAO.getEM().find(Commande.class, id);
+		return uneCommande;
+	}
+	
+	public static void createCommande(Commande uneCommande) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneCommande);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updateCommande(Commande uneCommande) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneCommande);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deleteCommande(Commande uneCommande) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(uneCommande);
+		DAO.getEM().getTransaction().commit();
+	}
 }

@@ -13,5 +13,27 @@ public class CategorieDAO {
 		TypedQuery<Categorie> query = DAO.getEM().createQuery(req, Categorie.class);
 		return query.getResultList();
 	}
+	
+	public static Categorie getCategorie(int id) {
+		Categorie uneCategorie = DAO.getEM().find(Categorie.class, id);
+		return uneCategorie;
+	}
 
+	public static void createCategorie(Categorie uneCategorie) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneCategorie);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updateCategorie(Categorie uneCategorie) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneCategorie);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deleteCategorie(Categorie uneCategorie) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(uneCategorie);
+		DAO.getEM().getTransaction().commit();
+	}
 }

@@ -14,4 +14,27 @@ public class PaiementDAO {
 		return query.getResultList();
 	}
 
+	public static Paiement getPaiementById(int id) {
+		Paiement unPaiement = DAO.getEM().find(Paiement.class, id);
+		return unPaiement;
+	}
+	
+	public static void createPaiement(Paiement unPaiement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unPaiement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updatePaiement(Paiement unPaiement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unPaiement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deletePaiement(Paiement unPaiement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(unPaiement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
 }

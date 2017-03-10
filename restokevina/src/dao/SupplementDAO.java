@@ -14,4 +14,27 @@ public class SupplementDAO {
 		return query.getResultList();
 	}
 
+	public static Supplement getSupplementbyId(int id) {
+		Supplement unSupplement = DAO.getEM().find(Supplement.class, id);
+		return unSupplement;
+	}
+	
+	public static void createSupplement(Supplement unSupplement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unSupplement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updateSupplement(Supplement unSupplement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unSupplement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deleteSupplement(Supplement unSupplement) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(unSupplement);
+		DAO.getEM().getTransaction().commit();
+	}
+	
 }

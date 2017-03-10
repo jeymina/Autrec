@@ -14,4 +14,27 @@ public class SessionDAO {
 		return query.getResultList();
 	}
 
+	public static Session getSessionById(int id) {
+		Session uneSession = DAO.getEM().find(Session.class, id);
+		return uneSession;
+	}
+	
+	public static void createSession(Session uneSession) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneSession);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updateSession(Session uneSession) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(uneSession);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deleteSession(Session uneSession) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(uneSession);
+		DAO.getEM().getTransaction().commit();
+	}
+	
 }

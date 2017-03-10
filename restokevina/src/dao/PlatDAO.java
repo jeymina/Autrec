@@ -13,5 +13,28 @@ public class PlatDAO {
 		TypedQuery<Plat> query = DAO.getEM().createQuery(req, Plat.class);
 		return query.getResultList();
 	}
+	
+	public static Plat getPlatById(int id) {
+		Plat unPlat = DAO.getEM().find(Plat.class, id);
+		return unPlat;
+	}
+	
+	public static void createPlat(Plat unPlat) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unPlat);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void updatePlat(Plat unPlat) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(unPlat);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void deletePlat(Plat unPlat) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().remove(unPlat);
+		DAO.getEM().getTransaction().commit();
+	}
 
 }
