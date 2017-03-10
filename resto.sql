@@ -7,7 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Table `adresse`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `adresse` (
-  `adr_id` INT(11) NOT NULL,
+  `adr_id` INT(11) NOT NULL AUTO_INCREMENT,
   `adr_voirie` VARCHAR(255) NULL,
   `adr_cp` VARCHAR(5) NULL,
   `adr_ville` VARCHAR(100) NULL,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
 -- Table `utilisateur`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `util_id` INT(11) NOT NULL,
+  `util_id` INT(11) NOT NULL AUTO_INCREMENT,
   `util_nom` VARCHAR(50) NOT NULL,
   `util_prenom` VARCHAR(50) NOT NULL,
   `util_pass` VARCHAR(50) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Table `commande`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `commande` (
-  `com_id` INT(11) NOT NULL,
+  `com_id` INT(11) NOT NULL AUTO_INCREMENT,
   `com_date_validation` TIMESTAMP NULL,
   `com_date_livraison` TIMESTAMP NULL,
   `com_util` INT(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
 -- Table `mode`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mode` (
-  `mode_id` INT(11) NOT NULL,
+  `mode_id` INT(11) NOT NULL AUTO_INCREMENT,
   `mode_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`mode_id`));
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `mode` (
 -- Table `paiement`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `paiement` (
-  `paie_id` INT(11) NOT NULL,
+  `paie_id` INT(11) NOT NULL AUTO_INCREMENT,
   `paie_montant` DECIMAL(10,2) NOT NULL,
   `paie_date` TIMESTAMP NOT NULL,
   `paie_com` INT(11) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `paiement` (
 -- Table `categorie`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `categorie` (
-  `cat_id` INT(11) NOT NULL,
+  `cat_id` INT(11) NOT NULL AUTO_INCREMENT,
   `cat_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`cat_id`));
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 -- Table `plat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `plat` (
-  `plat_id` INT(11) NOT NULL,
+  `plat_id` INT(11) NOT NULL AUTO_INCREMENT,
   `plat_nom` VARCHAR(50) NOT NULL,
   `plat_cat` INT(11) NOT NULL,
   PRIMARY KEY (`plat_id`),
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `plat` (
 -- Table `supplement`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `supplement` (
-  `sup_id` INT(11) NOT NULL,
+  `sup_id` INT(11) NOT NULL AUTO_INCREMENT,
   `sup_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`sup_id`));
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `supplement` (
 -- Table `ingredient`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ingredient` (
-  `ing_id` INT(11) NOT NULL,
+  `ing_id` INT(11) NOT NULL AUTO_INCREMENT,
   `ing_nom` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`ing_id`));
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
 -- Table `l_ing_plat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `l_ing_plat` (
-  `lingplat_plat` INT(11) NOT NULL,
+  `lingplat_plat` INT(11) NOT NULL AUTO_INCREMENT,
   `lingplat_ing` INT(11) NOT NULL,
   `ing_portion` INT(11) NOT NULL,
   `ing_montant` DECIMAL(10,2) NOT NULL,
@@ -159,11 +159,11 @@ CREATE TABLE IF NOT EXISTS `l_ing_plat` (
 -- Table `l_sup_plat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `l_sup_plat` (
-  `lsupplat_plat` INT(11) NOT NULL,
+  `lsupplat_plat` INT(11) NOT NULL AUTO_INCREMENT,
   `lsupplat_sup` INT(11) NOT NULL,
   PRIMARY KEY (`lsupplat_plat`, `lsupplat_sup`),
-  INDEX `fk_lsupplat_sup_idx` (`lsupplat_sup` ASC),
-  CONSTRAINT `fk_lsupplat_plat`
+  INDEX `fk_loptplat_opt_idx` (`lsupplat_sup` ASC),
+  CONSTRAINT `fk_loptplat_plat`
     FOREIGN KEY (`lsupplat_plat`)
     REFERENCES `plat` (`plat_id`)
     ON DELETE NO ACTION
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `l_sup_plat` (
 -- Table `l_com_plat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `l_com_plat` (
-  `lcomplat_com` INT(11) NOT NULL,
+  `lcomplat_com` INT(11) NOT NULL AUTO_INCREMENT,
   `lcomplat_plat` INT(11) NOT NULL,
   `lcomplat_quantite` INT(11) NOT NULL,
   PRIMARY KEY (`lcomplat_com`, `lcomplat_plat`),
