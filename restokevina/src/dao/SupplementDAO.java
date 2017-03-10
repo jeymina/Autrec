@@ -31,10 +31,13 @@ public class SupplementDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteSupplement(Supplement unSupplement) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unSupplement);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteSupplement(int id) {
+		Supplement unSupplement = DAO.getEM().find(Supplement.class, id);
+		if (unSupplement != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unSupplement);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

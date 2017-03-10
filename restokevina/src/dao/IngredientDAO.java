@@ -30,10 +30,13 @@ public class IngredientDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteIngredient(Ingredient unIngredient) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unIngredient);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteIngredient(int id) {
+		Ingredient unIngredient = DAO.getEM().find(Ingredient.class, id);
+		if (unIngredient != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unIngredient);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

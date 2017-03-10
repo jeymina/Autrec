@@ -31,10 +31,13 @@ public class PlatDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deletePlat(Plat unPlat) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unPlat);
-		DAO.getEM().getTransaction().commit();
+	public static void deletePlat(int id) {
+		Plat unPlat = DAO.getEM().find(Plat.class, id);
+		if (unPlat != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unPlat);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 
 }

@@ -31,9 +31,12 @@ public class CategorieDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteCategorie(Categorie uneCategorie) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(uneCategorie);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteCategorie(int id) {
+		Categorie uneCategorie = DAO.getEM().find(Categorie.class, id);
+		if (uneCategorie != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(uneCategorie);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 }

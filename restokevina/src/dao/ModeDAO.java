@@ -31,10 +31,13 @@ public class ModeDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteMode(Mode unMode) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unMode);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteMode(int id) {
+		Mode unMode = DAO.getEM().find(Mode.class, id);
+		if (unMode != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unMode);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

@@ -31,10 +31,13 @@ public class UtilisateurDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteUtilisateur(Utilisateur unUtilisateur) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unUtilisateur);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteUtilisateur(int id) {
+		Utilisateur unUtilisateur = DAO.getEM().find(Utilisateur.class, id);
+		if (unUtilisateur != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unUtilisateur);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

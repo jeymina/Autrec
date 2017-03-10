@@ -31,10 +31,13 @@ public class SessionDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteSession(Session uneSession) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(uneSession);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteSession(int id) {
+		Session uneSession = DAO.getEM().find(Session.class, id);
+		if (uneSession != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(uneSession);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

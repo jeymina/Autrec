@@ -31,9 +31,12 @@ public class CommandeDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteCommande(Commande uneCommande) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(uneCommande);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteCommande(int id) {
+		Commande uneCommande = DAO.getEM().find(Commande.class, id);
+		if (uneCommande != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(uneCommande);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 }

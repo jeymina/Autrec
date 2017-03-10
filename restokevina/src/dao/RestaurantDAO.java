@@ -31,10 +31,13 @@ public class RestaurantDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deleteRestaurant(Restaurant unRestaurant) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unRestaurant);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteRestaurant(int id) {
+		Restaurant unRestaurant = DAO.getEM().find(Restaurant.class, id);
+		if (unRestaurant != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unRestaurant);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

@@ -31,10 +31,13 @@ public class PaiementDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 	
-	public static void deletePaiement(Paiement unPaiement) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(unPaiement);
-		DAO.getEM().getTransaction().commit();
+	public static void deletePaiement(int id) {
+		Paiement unPaiement = DAO.getEM().find(Paiement.class, id);
+		if (unPaiement != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(unPaiement);
+			DAO.getEM().getTransaction().commit();			
+		}
 	}
 	
 }

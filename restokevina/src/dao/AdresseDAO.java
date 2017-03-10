@@ -40,10 +40,13 @@ public class AdresseDAO {
 		DAO.getEM().getTransaction().commit();
 	}
 
-	public static void deleteAdresse(Adresse uneAdresse) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().remove(uneAdresse);
-		DAO.getEM().getTransaction().commit();
+	public static void deleteAdresse(int id) {
+		Adresse uneAdresse = DAO.getEM().find(Adresse.class, id);
+		if (uneAdresse != null) {
+			DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(uneAdresse);
+			DAO.getEM().getTransaction().commit();
+		}
 	}	
 
 }
