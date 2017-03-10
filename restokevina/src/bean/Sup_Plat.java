@@ -25,7 +25,7 @@ public class Sup_Plat implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="lsupplat_sup")
-	private Supplement supplatOpt;
+	private Supplement supplatSup;
 
 	public Plat getSupplatPlat() {
 		return supplatPlat;
@@ -35,12 +35,12 @@ public class Sup_Plat implements Serializable {
 		this.supplatPlat = supplatPlat;
 	}
 
-	public Supplement getSupplatOpt() {
-		return supplatOpt;
+	public Supplement getSupplatSup() {
+		return supplatSup;
 	}
 
-	public void setSupplatOpt(Supplement supplatOpt) {
-		this.supplatOpt = supplatOpt;
+	public void setSupplatSup(Supplement supplatSup) {
+		this.supplatSup = supplatSup;
 	}
 
 	
