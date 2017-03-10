@@ -14,7 +14,7 @@ public class CategorieDAO {
 		return query.getResultList();
 	}
 	
-	public static Categorie getCategorie(int id) {
+	public static Categorie getCategorieById(int id) {
 		Categorie uneCategorie = DAO.getEM().find(Categorie.class, id);
 		return uneCategorie;
 	}
