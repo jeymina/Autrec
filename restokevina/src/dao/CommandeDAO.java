@@ -14,7 +14,7 @@ public class CommandeDAO {
 		return query.getResultList();
 	}
 	
-	public Commande getCommandeById(int id) {
+	public static Commande getCommandeById(int id) {
 		Commande uneCommande = DAO.getEM().find(Commande.class, id);
 		return uneCommande;
 	}
