@@ -23,6 +23,7 @@ import dao.CommandeDAO;
 import dao.IngredientDAO;
 import dao.ModeDAO;
 import dao.SupplementDAO;
+import dao.TestDAO;
 import dao.PaiementDAO;
 import dao.PlatDAO;
 import dao.UtilisateurDAO;
@@ -87,5 +88,27 @@ public class TestControle {
 	@RequestMapping(value="/testingAdrByAdr", method=RequestMethod.GET)
 	public @ResponseBody List<Adresse> testingAdrByAdr(@RequestParam ("ville") String ville, @RequestParam ("cp") String cp, @RequestParam ("rue") String rue) {
 		return AdresseDAO.getAdresse(ville, cp, rue);
+	}
+	
+	@RequestMapping(value="/testinGetUserByVille", method=RequestMethod.GET)
+	public @ResponseBody List<Utilisateur> testinGetUserByVille() {
+		return TestDAO.getUserByVille("Brest");
+	}
+	
+	@RequestMapping(value="/testinCreateADR", method=RequestMethod.GET)
+	public @ResponseBody void testinCreateADR() {
+		TestDAO.createAdr(new Adresse());
+	}
+	
+	@RequestMapping(value="/testinUpdateADR", method=RequestMethod.GET)
+	public @ResponseBody void testinUpdateADR() {
+		Adresse adr = AdresseDAO.getAdresseById(7);
+		adr.setVoirie("voiriie modified");
+		TestDAO.updateADr(adr);
+	}	
+	
+	@RequestMapping(value="/testinDeleteADR", method=RequestMethod.GET)
+	public @ResponseBody void testinDeleteADR() {
+		TestDAO.deleteADr(9);
 	}
 }

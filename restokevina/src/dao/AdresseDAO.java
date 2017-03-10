@@ -32,6 +32,7 @@ public class AdresseDAO {
 		DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(uneAdresse);
 		DAO.getEM().getTransaction().commit();
+
 	}
 
 	public static void updateAdresse(Adresse uneAdresse) {

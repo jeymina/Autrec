@@ -39,5 +39,4 @@ public class UtilisateurDAO {
 			DAO.getEM().getTransaction().commit();			
 		}
 	}
-	
 }
