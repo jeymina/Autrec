@@ -1,11 +1,13 @@
 var monApp = angular.module('monAppli', ['ngRoute','ngAnimate']);
 
 
-monApp.controller('appCtrl',['$scope','$animate', function ($scope, $animate) {
 
+monApp.controller('appCtrl',['$scope','$animate', function ($scope, $animate) {
+ $scope.$on('$viewContentLoaded', function() {$('#navbar').load('navbar.html');});
+
+  prent = window.parent;
   // will work as normal, if globaly disabled
   $animate.enabled(true);
-
   $scope.slides = [{
     image: 'http://lorempixel.com/400/200/',
     text: 'blah1'
@@ -30,30 +32,30 @@ monApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when("/home", {
         templateUrl : "index.html",
-        //controller: appCtrl
+        controller: "appCtrl"
     })
     .when("/Desserts", {
         templateUrl : "desserts.html",
-       // controller: appCtrl
+        controller: "appCtrl"
     })
     .when("/entrees", {
         templateUrl : "entrees.html",
-         //controller: appCtrl
+        controller: "appCtrl"
     })
     .when("/plats", {
         templateUrl : "plats.html",
-         //controller: appCtrl
+        controller:"appCtrl"
     });
 }]);
 
 monApp.directive('bsActiveLink', ['$location', function ($location) {
     return {
-       /*// restrict: 'A', //use as attribute 
+       // restrict: 'A', //use as attribute 
         replace: false,
         link: function (scope, elem) {
             //after the route has changed
             scope.$on("$routeChangeSuccess", function () {
-               /* var hrefs = ['/#' + $location.path(),
+                var hrefs = ['/#' + $location.path(),
                              '#' + $location.path(), //html5: false
                              $location.path()]; //html5: true
                 angular.forEach(elem.find('a'), function (a) {
@@ -64,6 +66,13 @@ monApp.directive('bsActiveLink', ['$location', function ($location) {
                         a.parent().removeClass('active');   
                     };
                 });   
-                */  
-            };
-        }]);
+                
+            });
+        }
+      }
+    }]);
+/*
+$(document).ready(function(){
+  $('#navbar').load('navbar.html');
+})
+*/
