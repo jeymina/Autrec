@@ -2,7 +2,11 @@ package control;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,49 +35,49 @@ import dao.UtilisateurDAO;
 
 @Controller
 public class TestControle {
-	
+
 	// OK
 	@RequestMapping(value="/testingAdr", method=RequestMethod.GET)
 	public @ResponseBody List<Adresse> testingAdr() {
 		return AdresseDAO.getListeAdresse();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingCat", method=RequestMethod.GET)
 	public @ResponseBody List<Categorie> testingCat() {
 		return CategorieDAO.getListeCategorie();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingComm", method=RequestMethod.GET)
 	public @ResponseBody List<Commande> testingComm() {
 		return CommandeDAO.getListeCommande();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingIng", method=RequestMethod.GET)
 	public @ResponseBody List<Ingredient> testingIng() {
 		return IngredientDAO.getListeIngredient();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingMode", method=RequestMethod.GET)
 	public @ResponseBody List<Mode> testingMode() {
 		return ModeDAO.getListeMode();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingSupp", method=RequestMethod.GET)
 	public @ResponseBody List<Supplement> testingOpt() {
 		return SupplementDAO.getListeSupplement();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingPaie", method=RequestMethod.GET)
 	public @ResponseBody List<Paiement> testingPaie() {
 		return PaiementDAO.getListePaiement();
 	}
-	
+
 	// OK
 	@RequestMapping(value="/testingPlat", method=RequestMethod.GET)
 	public @ResponseBody List<Plat> testingPlat() {
@@ -84,31 +88,37 @@ public class TestControle {
 	public @ResponseBody List<Utilisateur> testingUtil() {
 		return UtilisateurDAO.getListeUtilisateur();
 	}
-	
+
 	@RequestMapping(value="/testingAdrByAdr", method=RequestMethod.GET)
 	public @ResponseBody List<Adresse> testingAdrByAdr(@RequestParam ("ville") String ville, @RequestParam ("cp") String cp, @RequestParam ("rue") String rue) {
 		return AdresseDAO.getAdresse(ville, cp, rue);
 	}
-	
+
 	@RequestMapping(value="/testinGetUserByVille", method=RequestMethod.GET)
 	public @ResponseBody List<Utilisateur> testinGetUserByVille() {
 		return TestDAO.getUserByVille("Brest");
 	}
-	
+
 	@RequestMapping(value="/testinCreateADR", method=RequestMethod.GET)
 	public @ResponseBody void testinCreateADR() {
 		TestDAO.createAdr(new Adresse());
 	}
-	
+
 	@RequestMapping(value="/testinUpdateADR", method=RequestMethod.GET)
 	public @ResponseBody void testinUpdateADR() {
 		Adresse adr = AdresseDAO.getAdresseById(7);
 		adr.setVoirie("voiriie modified");
 		TestDAO.updateADr(adr);
 	}	
-	
+
 	@RequestMapping(value="/testinDeleteADR", method=RequestMethod.GET)
 	public @ResponseBody void testinDeleteADR() {
 		TestDAO.deleteADr(9);
+	}
+
+	@RequestMapping(value="/testingPOST",method=RequestMethod.POST)
+	public @ResponseBody void testingPOST(
+			@RequestBody @Valid Adresse adr, BindingResult bres) {
+		TestDAO.testingPOST(adr);
 	}
 }

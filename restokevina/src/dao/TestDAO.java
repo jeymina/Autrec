@@ -38,4 +38,15 @@ public class TestDAO {
 		}
 	}
 
+	public static void testingPOST(Adresse adr) {
+		System.out.println("enregistrerADr nom = "+adr.getVoirie());
+
+		Adresse a = new Adresse();
+		a.setVoirie(adr.getVoirie());
+		a.setCp(adr.getCp());
+		a.setVille(adr.getVille());
+
+		TestDAO.createAdr(a);
+	}
+
 }
