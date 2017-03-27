@@ -39,4 +39,12 @@ public class UtilisateurDAO {
 			DAO.getEM().getTransaction().commit();			
 		}
 	}
+
+	public static List<Utilisateur> connexion(String id, String pass) {
+		String req = "SELECT a FROM Utilisateur a WHERE a.mail=:mail AND a.password=:password";
+		TypedQuery<Utilisateur> query = DAO.getEM().createQuery(req, Utilisateur.class);
+		query.setParameter("mail", id);
+		query.setParameter("password", pass);
+		return query.getResultList();		
+	}
 }

@@ -6,10 +6,11 @@ public class Session {
 	
 	private String menuEnCours;
 	
+	private Utilisateur utilActif;
+	
 	private Session(){
 		this.menuEnCours = "Mon menu !";
 	}
-
 
 	public static Session getInstance(){
 		if (INSTANCE == null ) INSTANCE = new Session();
@@ -24,5 +25,15 @@ public class Session {
 
 	public void setMenuEnCours(String menuEnCours) {
 		this.menuEnCours = menuEnCours;
+	}
+
+
+	public Utilisateur getUtilActif() {
+		return utilActif;
+	}
+
+
+	public void setUtilActif(Utilisateur utilActif) {
+		this.utilActif = utilActif;
 	}
 }

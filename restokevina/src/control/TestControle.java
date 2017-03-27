@@ -31,6 +31,7 @@ import dao.TestDAO;
 import dao.PaiementDAO;
 import dao.PlatDAO;
 import dao.UtilisateurDAO;
+import dto.ResponseBean;
 
 
 @Controller
@@ -120,5 +121,16 @@ public class TestControle {
 	public @ResponseBody void testingPOST(
 			@RequestBody @Valid Adresse adr, BindingResult bres) {
 		TestDAO.testingPOST(adr);
+	}
+	
+	@RequestMapping(value="/testingConnect",method=RequestMethod.GET)
+	public @ResponseBody ResponseBean testingConnect() {
+		List<Utilisateur> listU = UtilisateurDAO.connexion("hilary.golay@gmail.com", "azerty");
+		System.out.println(listU);
+		ResponseBean response = new ResponseBean();
+
+		response.getResponse().put("retour", "success");
+		response.getResponse().put("IdUtilisateur", ""+listU.get(0).getId());
+		return response;
 	}
 }

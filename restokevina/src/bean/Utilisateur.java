@@ -29,9 +29,12 @@ public class Utilisateur implements Serializable {
 
 	@Column(name="util_pass")
 	private String password;
-	
+
 	@Column(name="util_tel")
 	private String telephone;
+	
+	@Column(name="util_mail")
+	private String mail;
 
 	@ManyToOne
 	@JoinColumn(name = "util_adr")
@@ -79,6 +82,14 @@ public class Utilisateur implements Serializable {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public Adresse getUtilisateurAdr() {
