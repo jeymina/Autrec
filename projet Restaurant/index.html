@@ -33,9 +33,14 @@
     
   </head>
   
-  <body ng-app="monAppli" ng-controller="appCtrl" id="carousel" class="ng-view" >
+  <body ng-app="monAppli" ng-controller="appCtrl as vm" id="carousel" class="ng-view" ng-init="init()">
     <p>&nbsp;</p>
-    <p><a href="#!/login" class="btn btn-primary">Logout</a></p>
+    <p><a ng-click=logout() class="btn btn-primary">Logout</a></p>
+    <div ng-show="connected !== null">
+      bonjour {{connected.data.utilActif.nom}} :D
+    </div>
+    
+
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">

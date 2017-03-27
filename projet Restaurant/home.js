@@ -1,14 +1,55 @@
 var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 
-monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', function($scope, $animate, $rootScope) {
+monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', function($scope, $animate, $rootScope, $http) {
 
-    var connected = false;
-
+    var vm = this;
+    var isConnected;
 
     console.log("coucou");
+    console.log();
 
+    $scope.init = function() {
+        $scope.checkIfConnected();
+    }
 
+    $scope.logout = function() {
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/deconnexion.htm",
+            method: "POST",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {}
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log("déconnexion effectuée")
+                $scope.connected = null;
+            }
+        }).catch(function(data) {
+            console.log("déconnexion pas effectuée");
+        });
+    }
+
+    $scope.checkIfConnected = function() {
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/getSession.htm",
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(data) {
+            $scope.connected = data;
+            console.log("Je suis connecté :" + data.data.utilActif.nom);
+            console.log($scope.connected.data.utilActif.nom),
+                console.log($scope.connected);
+        }).catch(function(data) {
+            console.log("nike bien toutes tes mères");
+        });
+
+    }
 
     $scope.$on('$viewContentLoaded', function() {
         $('#navbar').load('navbar.html');
