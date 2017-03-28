@@ -51,7 +51,8 @@
 
 
                 } else {
-                    console.log("pas connecté");
+                    console.log("échec register");
+                    $scope.error = data.data.response.message;
                 }
             }).catch(function(error) {
                 console.log(error);

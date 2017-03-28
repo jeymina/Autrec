@@ -50,9 +50,11 @@
             <span ng-show="form.ville.$dirty && form.ville.$error.required" class="help-block">Ville is required</span>
         </div>
 
-        <div ng-messages="registrationForm.confirmPassword.$error" ng-messages-include="messages.html"></div>
+        <span class="error" ng-show="error" class="help-bloc" ng-cloak> {{error}}<br></span>
+
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Register</button>
+            <a href="#/home" class="btn btn-link">Cancel</a>
         </div>
     </form>
 </div>

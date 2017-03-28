@@ -1,7 +1,6 @@
 <html ng-app="monAppli" ng-controller="appCtrl as vm" ng-init="init()">
-<meta charset="utf-8" />
-
-<head>
+  <meta charset="utf-8" />
+  <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
@@ -23,17 +22,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     
     <div ng-show="connected !== null">
-        bonjour {{connected.data.response.session.utilActif.nom}} :D
-        <p><a ng-click=logout() class="btn btn-primary">Logout</a></p>
+      
+      <p> bonjour {{connected.data.response.session.utilActif.nom}} :D <a ng-click=logout() class="btn btn-primary">Logout</a></p>
+      
     </div>
-
     <div ng-show="connected === null">
-        <p><a ng-click=redirect() class="btn btn-primary">Login</a></p>
+      <p><a ng-click=redirect() class="btn btn-primary">Login</a></p>
     </div>
     <div id="navbar"></div>
-</head>
-
-<body id="carousel" class="ng-view">
+  </head>
+  <body id="carousel" class="ng-view">
     <p>&nbsp;</p>
     <!--
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -50,7 +48,6 @@
       </div>
     </div>
     -->
-    </div>
+  </div>
 </body>
-
 </html>

@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     'use strict';
 
     angular
@@ -9,14 +9,12 @@
         });
 
 
-    LoginController.$inject = ['$scope', '$http', '$location'];
+    LoginController.$inject = ['$scope', '$http', '$location', '$rootScope'];
 
 
-    function LoginController($scope, $http, $location) {
+    function LoginController($scope, $http, $location, $rootScope) {
         var vm = this;
         var oui;
-
-
 
 
 
@@ -47,7 +45,7 @@
                         }
                     }).then(function(data) {
                         $location.path('/home');
-                         $scope.$broadcast("myEvent");
+                        $rootScope.$broadcast("myEvent");
                     }).catch(function(data) {
                         console.log("get session de login a échoué");
                     });
@@ -56,6 +54,7 @@
 
                 } else {
                     console.log("pas connecté");
+                    $scope.error = "Ces identifiants ne sont pas valides";
                 }
             }).catch(function(error) {
                 console.log(error);

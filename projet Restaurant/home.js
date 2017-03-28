@@ -18,6 +18,7 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
     }
 
     $scope.$on("myEvent", function(event, args) {
+        console.log("MyEvent");
         $scope.checkIfConnected();
     });
 
@@ -121,7 +122,7 @@ monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
             templateUrl: 'log/register/register.view.html',
             controllerAs: 'vm'
         }).otherwise({
-            redirectTo: '/login'
+            redirectTo: '/home'
         });
 
 }]);
