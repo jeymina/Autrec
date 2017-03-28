@@ -40,7 +40,7 @@ public class IngredientControle {
 			IngredientDAO.deleteIngredient(Integer.parseInt(request.getId()));
 		}catch (NumberFormatException e) {
 			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
-			response.getResponse().put("message","Entier attendu pour le parametre 'id'");
+			response.getResponse().put("message","Entier attendu pour le paramètre 'id'");
 			return response;
 		}
 		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);

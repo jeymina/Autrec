@@ -1,6 +1,8 @@
 package control;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Adresse;
 import bean.Categorie;
+import bean.Com_Plat;
 import bean.Commande;
 import bean.Ingredient;
 import bean.Mode;
 import bean.Supplement;
 import bean.Paiement;
 import bean.Plat;
+import bean.Restaurant;
+import bean.Session;
 import bean.Utilisateur;
 import dao.AdresseDAO;
 import dao.CategorieDAO;
@@ -131,6 +136,57 @@ public class TestControle {
 
 		response.getResponse().put("retour", "success");
 		response.getResponse().put("IdUtilisateur", ""+listU.get(0).getId());
+		return response;
+	}
+	
+	@RequestMapping(value="/adminGetSessions", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Session> adminGetSessions() {
+		return Restaurant.getInstance().getSessions();
+	}
+	
+	@RequestMapping(value="/testPanier", method=RequestMethod.GET)
+	public @ResponseBody ResponseBean testPanier() {
+		ResponseBean response = new ResponseBean();		
+		int userId = 1;
+		int platId = 1;
+		int qte = 3;
+				
+		List<Commande> l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour.size() == 0){
+			Commande cmd = new Commande();
+			cmd.setCommandeUtil(UtilisateurDAO.getUtilisateurbyId(userId));
+			CommandeDAO.createCommande(cmd);
+		}
+		l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour.size() == 0){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Echec lors de la création d'une commande");
+			return response;
+		}
+		Commande cmd = l_commandeEnCour.get(0);
+				
+		//TODO To change after fusion compla & compla_sup
+		Collection<Com_Plat> l_complat = cmd.getListComPlat();
+		boolean existing = false;
+		for (Com_Plat com_Plat : l_complat) {
+			if (com_Plat.getComplatPlat().getId() == platId){
+				// Une commande de ce plat existe deja, on incremente la quantite
+				CommandeDAO.ajouteUneQte(com_Plat, qte);
+				existing = true;
+			}
+		}
+		
+		if (!existing){
+			Com_Plat complat = new Com_Plat();
+			complat.setComplatCom(cmd);
+			complat.setComplatPlat(PlatDAO.getPlatById(platId));
+			complat.setQuantite(qte);
+			CommandeDAO.createComPlat(complat);
+		}
+
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("idCmd", cmd.getId());
+		response.getResponse().put("prix", CommandeControle.computePrice(cmd));
 		return response;
 	}
 }

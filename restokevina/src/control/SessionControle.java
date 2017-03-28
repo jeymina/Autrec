@@ -78,7 +78,7 @@ public class SessionControle {
 		Utilisateur user = UtilisateurDAO.getUtilisateurbyMail(request.getMail());
 		if (user != null){
 			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
-			response.getResponse().put("message", "Adresse mail deja existante");
+			response.getResponse().put("message", "Adresse mail déjà existante");
 			return response;
 		} else {
 			Adresse adr = AdresseDAO.getAdresse(request.getVille(), request.getCp(), request.getVoirie());
@@ -93,7 +93,7 @@ public class SessionControle {
 			adr = AdresseDAO.getAdresse(request.getVille(), request.getCp(), request.getVoirie());
 			if (adr == null) {
 				response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
-				response.getResponse().put("message", "Failed to create an adresse");
+				response.getResponse().put("message", "Echec de création d'une adresse");
 				return response;
 			}
 			user = new Utilisateur();
@@ -107,7 +107,7 @@ public class SessionControle {
 			user = UtilisateurDAO.getUtilisateurbyMail(request.getMail());
 			if (user == null){
 				response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
-				response.getResponse().put("message", "Failed to create an user");
+				response.getResponse().put("message", "Echec de création d'un utilisateur");
 				return response;
 			}
 
