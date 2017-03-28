@@ -100,6 +100,15 @@ else backgroundColor = newCol;
    }
 }
 
+function hideAll() {
+
+for (count = 0; count < menu.length; count++)
+
+menu[count][0].ref.visibility = 'hidden';
+changeCol(litNow, false);
+}
+
+
 function hideAllBut(menuNum) {
 var keepMenus = getTree(menuNum, 1);
 for (count = 0; count < menu.length; count++)
@@ -144,7 +153,7 @@ var w = (isVert ? width : length);
 var h = (isVert ? length : width);
 
 if (isDOM || isIE4) {
-str += '<div id="' + itemID + '" style="position: absolute; left: ' + itemX + '; top: ' + itemY + '; width: ' + w + '; height: ' + h + '; visibility: inherit; ';
+str += '<div class="navbar" id="' + itemID + '" style="position: absolute; left: ' + itemX + '; top: ' + itemY + '; width: ' + w + '; height: ' + h + ';  ';
 if (backCol) str += 'background: ' + backCol + '; ';
 str += '" ';
 }
@@ -174,7 +183,8 @@ else itemX += length + spacing;
 if (isDOM) {
 var newDiv = document.createElement('div');
 document.getElementsByTagName('body').item(0).appendChild(newDiv);
-newDiv.innerHTML = str;
+newDiv.innerHTML = str ;
+newDiv.className= "navbar";
 ref = newDiv.style;
 ref.position = 'absolute';
 ref.visibility = 'hidden';

@@ -29,7 +29,9 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
             if (data.data.response.retour === "success") {
                 console.log("déconnexion effectuée")
                 $scope.connected = null;
-                
+                [].forEach.call(document.querySelectorAll('.navbar'), function (el) {
+                    el.style.visibility = 'hidden';
+                });          
             }
         }).catch(function(data) {
             console.log("déconnexion pas effectuée");
@@ -84,6 +86,7 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
                 if (data.data.response.session.utilActif !== null) {
                     console.log("chargement barre menu");
                     $('#navbar').load('navbar.html');
+                    
                 }
             }
         });
