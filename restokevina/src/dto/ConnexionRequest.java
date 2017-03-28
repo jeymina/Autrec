@@ -2,16 +2,16 @@ package dto;
 
 public class ConnexionRequest {
 
-	private String id;
+	private String mail;
 	
 	private String pass;
 
-	public String getId() {
-		return id;
+	public String getMail() {
+		return mail;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public String getPass() {
@@ -21,4 +21,6 @@ public class ConnexionRequest {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+
 }

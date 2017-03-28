@@ -40,11 +40,18 @@ public class UtilisateurDAO {
 		}
 	}
 
-	public static List<Utilisateur> connexion(String id, String pass) {
+	public static List<Utilisateur> connexion(String mail, String pass) {
 		String req = "SELECT a FROM Utilisateur a WHERE a.mail=:mail AND a.password=:password";
 		TypedQuery<Utilisateur> query = DAO.getEM().createQuery(req, Utilisateur.class);
-		query.setParameter("mail", id);
+		query.setParameter("mail", mail);
 		query.setParameter("password", pass);
 		return query.getResultList();		
+	}
+
+	public static Utilisateur getUtilisateurbyMail(String mail) {
+		String req = "SELECT a FROM Utilisateur a WHERE a.mail=:mail";
+		TypedQuery<Utilisateur> query = DAO.getEM().createQuery(req, Utilisateur.class);
+		query.setParameter("mail", mail);
+		return query.getSingleResult();
 	}
 }

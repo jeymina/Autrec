@@ -19,13 +19,13 @@ public class AdresseDAO {
 		return uneAdresse;
 	}
 
-	public static List<Adresse> getAdresse(String ville, String cp, String voirie) {
+	public static Adresse getAdresse(String ville, String cp, String voirie) {
 		String req = "SELECT a FROM Adresse a WHERE a.ville=:ville AND a.cp=:cp AND a.voirie=:voirie";
 		TypedQuery<Adresse> query = DAO.getEM().createQuery(req, Adresse.class);
 		query.setParameter("ville", ville);
 		query.setParameter("cp", cp);
 		query.setParameter("voirie", voirie);
-		return query.getResultList();
+		return query.getSingleResult();
 	}
 	
 	public static void createAdresse(Adresse uneAdresse) {

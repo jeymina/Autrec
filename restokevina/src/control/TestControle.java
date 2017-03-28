@@ -91,7 +91,7 @@ public class TestControle {
 	}
 
 	@RequestMapping(value="/testingAdrByAdr", method=RequestMethod.GET)
-	public @ResponseBody List<Adresse> testingAdrByAdr(@RequestParam ("ville") String ville, @RequestParam ("cp") String cp, @RequestParam ("rue") String rue) {
+	public @ResponseBody Adresse testingAdrByAdr(@RequestParam ("ville") String ville, @RequestParam ("cp") String cp, @RequestParam ("rue") String rue) {
 		return AdresseDAO.getAdresse(ville, cp, rue);
 	}
 
