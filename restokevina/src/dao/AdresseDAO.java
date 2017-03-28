@@ -25,7 +25,14 @@ public class AdresseDAO {
 		query.setParameter("ville", ville);
 		query.setParameter("cp", cp);
 		query.setParameter("voirie", voirie);
-		return query.getSingleResult();
+		Adresse a;
+		try {
+			a = query.getSingleResult();
+		}catch (Exception e) {
+			System.err.println("Pas d'adresse avec le infos '"+ville+";"+cp+";"+voirie+"' trouvé");
+			return null;
+		}
+		return a;
 	}
 	
 	public static void createAdresse(Adresse uneAdresse) {

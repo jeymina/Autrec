@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import bean.Utilisateur;
@@ -52,6 +53,13 @@ public class UtilisateurDAO {
 		String req = "SELECT a FROM Utilisateur a WHERE a.mail=:mail";
 		TypedQuery<Utilisateur> query = DAO.getEM().createQuery(req, Utilisateur.class);
 		query.setParameter("mail", mail);
-		return query.getSingleResult();
+		Utilisateur u;
+		try{
+			u = query.getSingleResult();			
+		}catch (NoResultException e) {
+			System.err.println("Pas d'utilisateur avec le mail '"+mail+"' trouvé");
+			return null;
+		}
+		return u;
 	}
 }
