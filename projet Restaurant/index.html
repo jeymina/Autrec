@@ -20,16 +20,16 @@
     <script src="log/login/login.controller.js"></script>
     <script src="log/register/register.controller.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    
-    <div ng-show="connected !== null">
-      
+    <script src="menu will.js"></script>
+
+    <div ng-show="connected !== null" >
+        <div id="navbar"></div> 
       <p> bonjour {{connected.data.response.session.utilActif.nom}} :D <a ng-click=logout() class="btn btn-primary">Logout</a></p>
-      
     </div>
     <div ng-show="connected === null">
       <p><a ng-click=redirect() class="btn btn-primary">Login</a></p>
     </div>
-    <div id="navbar"></div>
+   
   </head>
   <body id="carousel" class="ng-view">
     <p>&nbsp;</p>

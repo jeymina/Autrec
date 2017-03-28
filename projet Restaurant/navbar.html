@@ -1,34 +1,14 @@
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 		
-
+	<body>
 		<!-- The main CSS file -->
 	<link href="navbar.css" rel="stylesheet"/>
-
-	<!-- The ng-app directive tells angular that the code below should be evaluated -->
-
-	<body ng-app="monAppli" ng-controller="appCtrl">
-<!-- ng-click="$event.preventDefault()"> -->
-		<!-- The navigation menu will get the value of the "active" variable as a class.
-			 The $event.preventDefault() stops the page from jumping when a link is clicked. -->
-		
-		<nav class="{{active}}" >
-
-			<!-- When a link in the menu is clicked, we set the active variable -->
-			
-
-			<a href = "#/home" class="accueil" > Home</a>
-			<a href="#/entrees" class="entrees" >Entrees</a>
-			<a href="#/plats" class="plats" >Plats</a>
-			<a href="#/Desserts" class="desserts" >Desserts</a>
-		</nav>
-
-		<!-- ng-show will show an element if the value in the quotes is truthful,
-			 while ng-hide does the opposite. Because the active variable is not set
-			 initially, this will cause the first paragraph to be visible. -->
-
-
-		<!-- Include AngularJS from Google's CDN -->
-
+    
+    <div>
+        <script type="text/javascript">writeMenus()</script>
+    </div>
+    
+	
 	</body>
 </html>
