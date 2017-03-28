@@ -24,8 +24,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `util_pass` VARCHAR(50) NOT NULL,
   `util_tel` VARCHAR(10) NOT NULL,
   `util_adr` INT(11) NOT NULL,
+  `util_mail` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`util_id`),
   INDEX `fk_util_adr_idx` (`util_adr` ASC),
+  UNIQUE INDEX `util_mail_UNIQUE` (`util_mail` ASC),
   CONSTRAINT `fk_util_adr`
     FOREIGN KEY (`util_adr`)
     REFERENCES `adresse` (`adr_id`)
@@ -192,6 +194,26 @@ CREATE TABLE IF NOT EXISTS `l_com_plat` (
   CONSTRAINT `fk_lcomplat_plat`
     FOREIGN KEY (`lcomplat_plat`)
     REFERENCES `plat` (`plat_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+-- -----------------------------------------------------
+-- Table `l_complat_sup`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `l_complat_sup` (
+  `lcomplatsup_lcomplat` INT(11) NULL,
+  `lcomplatsup_sup` INT(11) NOT NULL,
+  PRIMARY KEY (`lcomplatsup_lcomplat`, `lcomplatsup_sup`),
+  INDEX `fk_lcomplatsup_sup_idx` (`lcomplatsup_sup` ASC),
+  CONSTRAINT `fk_lcomplatsup_sup`
+    FOREIGN KEY (`lcomplatsup_sup`)
+    REFERENCES `supplement` (`sup_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lcomplatsup_complat`
+    FOREIGN KEY (`lcomplatsup_lcomplat`)
+    REFERENCES `l_com_plat` (`lcomplat_com`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
