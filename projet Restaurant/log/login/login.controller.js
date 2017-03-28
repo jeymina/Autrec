@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular
@@ -16,13 +16,17 @@
         var vm = this;
         var oui;
 
+
+
+
+
         vm.login = function() {
-            console.log("pute");
+            console.log("entrée dans login");
             $http({
                 url: "http://25.66.6.53:8080/restokevina/connexion.htm",
                 method: "POST",
                 data: {
-                    id: vm.username,
+                    mail: vm.username,
                     pass: vm.password
                 },
                 withCredentials: true,
@@ -35,7 +39,7 @@
                     console.log("et c'est connecté :D");
 
                     $http({
-                        url: "http://25.66.6.53:8080/restokevina/getSession.htm",
+                        url: "http://25.66.6.53:8080/restokevina/getsession.htm",
                         method: "GET",
                         withCredentials: true,
                         headers: {
@@ -43,8 +47,9 @@
                         }
                     }).then(function(data) {
                         $location.path('/home');
+                         $scope.$broadcast("myEvent");
                     }).catch(function(data) {
-                        console.log("nike bien toutes tes mères");
+                        console.log("get session de login a échoué");
                     });
 
 

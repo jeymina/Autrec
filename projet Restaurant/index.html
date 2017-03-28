@@ -1,6 +1,7 @@
-<html>
-  <meta charset="utf-8"/>
-  <head>
+<html ng-app="monAppli" ng-controller="appCtrl as vm" ng-init="init()">
+<meta charset="utf-8" />
+
+<head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
@@ -10,43 +11,35 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
     <script src="home.js"></script>
-    <link rel="stylesheet" href="assets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/bootstrap.min.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link href="app-content/app.css" rel="stylesheet" />
     <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="log/app-services/authentication.service.js"></script>
     <script src="log/app-services/flash.service.js"></script>
-    
     <script src="log/app-services/user.service.local-storage.js"></script>
     <script src="log/login/login.controller.js"></script>
     <script src="log/register/register.controller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     
-    <link rel="stylesheet" src="resto.css"/>
-    
-    <style>
-    .elementA {color: blue;}
-    .elementB {color: red;}
-    </style>
-    
-    <link rel="stylesheet" type="text/css" href="resto.css"/>
-    <div id="navbar"></div>
-    
-  </head>
-  
-  <body ng-app="monAppli" ng-controller="appCtrl as vm" id="carousel" class="ng-view" ng-init="init()">
-    <p>&nbsp;</p>
-    <p><a ng-click=logout() class="btn btn-primary">Logout</a></p>
     <div ng-show="connected !== null">
-      bonjour {{connected.data.utilActif.nom}} :D
+        bonjour {{connected.data.response.session.utilActif.nom}} :D
+        <p><a ng-click=logout() class="btn btn-primary">Logout</a></p>
     </div>
-    
 
+    <div ng-show="connected === null">
+        <p><a ng-click=redirect() class="btn btn-primary">Login</a></p>
+    </div>
+    <div id="navbar"></div>
+</head>
+
+<body id="carousel" class="ng-view">
+    <p>&nbsp;</p>
+    <!--
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#carousel-example-generic" ng-repeat="slide in slides" data-slide-to="$index" ng-class="{active:isActive($index)}"></li>
       </ol>
-      <!-- Wrapper for slides -->
       <div >
         <div class="item" ng-class="{active:index}">
           <img src="{{currentImage.image}}?{{index}" style="margin:auto;"/>
@@ -56,5 +49,8 @@
         </div>
       </div>
     </div>
-  </div>
-</body></html>
+    -->
+    </div>
+</body>
+
+</html>

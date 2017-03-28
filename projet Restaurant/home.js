@@ -1,7 +1,7 @@
 var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 
-monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', function($scope, $animate, $rootScope, $http) {
+monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', function($scope, $animate, $rootScope, $http, $location) {
 
     var vm = this;
     var isConnected;
@@ -12,6 +12,16 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', funct
     $scope.init = function() {
         $scope.checkIfConnected();
     }
+
+    $scope.redirect = function() {
+        $location.path('/login');
+    }
+
+    $scope.$on("myEvent", function(event, args) {
+        $scope.checkIfConnected();
+    });
+
+
 
     $scope.logout = function() {
         $http({
@@ -34,19 +44,26 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', funct
 
     $scope.checkIfConnected = function() {
         $http({
-            url: "http://25.66.6.53:8080/restokevina/getSession.htm",
+            url: "http://25.66.6.53:8080/restokevina/getsession.htm",
             method: "GET",
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(function(data) {
-            $scope.connected = data;
-            console.log("Je suis connecté :" + data.data.utilActif.nom);
-            console.log($scope.connected.data.utilActif.nom),
-                console.log($scope.connected);
+            if (data.data.response.retour === "success") {
+                if (data.data.response.session.utilActif !== null) {
+                    $scope.connected = data;
+                    console.log("data" + data.data);
+                    console.log("Je suis connecté :" + data.data.response.session.utilActif.nom);
+                    console.log($scope.connected.data.response.session.utilActif.nom);
+                    console.log($scope.connected);
+                } else {
+                    $scope.connected = null;
+                }
+            }
         }).catch(function(data) {
-            console.log("nike bien toutes tes mères");
+            console.log("GetSession de l'index n'est pas passé");
         });
 
     }
@@ -107,29 +124,4 @@ monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
             redirectTo: '/login'
         });
 
-}]);
-
-monApp.directive('bsActiveLink', ['$location', function($location) {
-    return {
-        // restrict: 'A', //use as attribute 
-        replace: false,
-        link: function(scope, elem) {
-            //after the route has changed
-            scope.$on("$routeChangeSuccess", function() {
-                var hrefs = ['/#' + $location.path(),
-                    '#' + $location.path(), //html5: false
-                    $location.path()
-                ]; //html5: true
-                angular.forEach(elem.find('a'), function(a) {
-                    a = angular.element(a);
-                    if (-1 !== hrefs.indexOf(a.attr('href'))) {
-                        a.parent().addClass('active');
-                    } else {
-                        a.parent().removeClass('active');
-                    };
-                });
-
-            });
-        }
-    }
 }]);
