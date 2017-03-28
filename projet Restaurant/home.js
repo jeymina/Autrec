@@ -2,9 +2,7 @@ var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 
 monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', function($scope, $animate, $rootScope, $http, $location) {
-
     var vm = this;
-    var isConnected;
 
     console.log("coucou");
     console.log();
@@ -16,12 +14,6 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
     $scope.redirect = function() {
         $location.path('/login');
     }
-
-    $scope.$on("myEvent", function(event, args) {
-        console.log("MyEvent");
-        $scope.checkIfConnected();
-    });
-
 
 
     $scope.logout = function() {
@@ -37,6 +29,7 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
             if (data.data.response.retour === "success") {
                 console.log("déconnexion effectuée")
                 $scope.connected = null;
+                
             }
         }).catch(function(data) {
             console.log("déconnexion pas effectuée");
@@ -44,6 +37,41 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
     }
 
     $scope.checkIfConnected = function() {
+        console.log("entrée dans le checkIfConnected");
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/getsession.htm",
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log(data.data);
+                if (data.data.response.session.utilActif !== null) {
+                    $scope.connected = data;
+                    console.log("data" + data.data);
+                    console.log("Je suis connecté :" + data.data.response.session.utilActif.nom);
+                    console.log($scope.connected.data.response.session.utilActif.nom);
+                    console.log($scope.connected);
+                } else {
+                    console.log("je met $scope.connected à null (index)")
+                    $scope.connected = null;
+                }
+            }
+        }).catch(function(data) {
+            console.log("GetSession de l'index n'est pas passé");
+        });
+
+    }
+
+    $scope.$on("myEvent", function(event, args) {
+        console.log("MyEvent");
+        $scope.checkIfConnected();
+    });
+
+
+    $scope.$on('$viewContentLoaded', function() {
         $http({
             url: "http://25.66.6.53:8080/restokevina/getsession.htm",
             method: "GET",
@@ -54,46 +82,15 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
         }).then(function(data) {
             if (data.data.response.retour === "success") {
                 if (data.data.response.session.utilActif !== null) {
-                    $scope.connected = data;
-                    console.log("data" + data.data);
-                    console.log("Je suis connecté :" + data.data.response.session.utilActif.nom);
-                    console.log($scope.connected.data.response.session.utilActif.nom);
-                    console.log($scope.connected);
-                } else {
-                    $scope.connected = null;
+                    console.log("chargement barre menu");
+                    $('#navbar').load('navbar.html');
                 }
             }
-        }).catch(function(data) {
-            console.log("GetSession de l'index n'est pas passé");
         });
-
-    }
-
-    $scope.$on('$viewContentLoaded', function() {
-        $('#navbar').load('navbar.html');
     });
 
-    prent = window.parent;
-    // will work as normal, if globaly disabled
-    $animate.enabled(true);
-    $scope.slides = [{
-        image: 'http://lorempixel.com/400/200/',
-        text: 'blah1'
-    }, {
-        image: 'http://lorempixel.com/400/200/nature',
-        text: 'blah2'
-    }, {
-        image: 'http://lorempixel.com/400/200/food',
-        text: 'blah3'
-    }, ];
 
-    $scope.isActive = function(i) {
-        return $scope.index - 1 == i;
-    }
-    $scope.index = 0;
-    $scope.currentImage = $scope.slides[$scope.index];
 }]);
-
 
 
 monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -102,7 +99,7 @@ monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
             templateUrl: "index.html",
             controller: "appCtrl"
         })
-        .when("/Desserts", {
+        .when("/desserts", {
             templateUrl: "desserts.html",
             controller: "appCtrl"
         })
@@ -124,5 +121,4 @@ monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
         }).otherwise({
             redirectTo: '/home'
         });
-
 }]);
