@@ -5,11 +5,11 @@ INSERT INTO `adresse` (`adr_id`, `adr_voirie`, `adr_cp`, `adr_ville`) VALUES ('4
 INSERT INTO `adresse` (`adr_id`, `adr_voirie`, `adr_cp`, `adr_ville`) VALUES ('5', '123 Rue Soleil', '29200', 'Brest');
 INSERT INTO `adresse` (`adr_id`, `adr_voirie`, `adr_cp`, `adr_ville`) VALUES ('6', '86 Avenue Jeanne Arc', '29200', 'Brest');
 
-INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_adr`) VALUES ('1', 'Capé', 'Andy', 'azerty', '0649658265', '1');
-INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_adr`) VALUES ('2', 'Honette', 'Camille', 'azerty', '0632541298', '2');
-INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_adr`) VALUES ('3', 'Can', 'Jerry', 'azerty', '0666985542', '3');
-INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_adr`) VALUES ('4', 'Golay', 'Hilary', 'azerty', '0654956652', '4');
-INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_adr`) VALUES ('5', 'Géfroi', 'Sandra', 'azerty', '0603265900', '5');
+INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_mail`, `util_adr`) VALUES ('1', 'Capé', 'Andy', 'azerty', '0649658265', 'andy.cape@gmail.com', '1');
+INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_mail`, `util_adr`) VALUES ('2', 'Honette', 'Camille', 'azerty', '0632541298', 'camille.honette@gmail.com', '2');
+INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_mail`, `util_adr`) VALUES ('3', 'Can', 'Jerry', 'azerty', '0666985542', 'jerry.can@gmail.com', '3');
+INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_mail`, `util_adr`) VALUES ('4', 'Golay', 'Hilary', 'azerty', '0654956652', 'hilary.golay@gmail.com', '4');
+INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_pass`, `util_tel`, `util_mail`, `util_adr`) VALUES ('5', 'Géfroi', 'Sandra', 'azerty', '0603265900', 'sandra.gefroi@gmail.com', '5');
 
 INSERT INTO `commande` (`com_id`, `com_date_validation`, `com_date_livraison`, `com_util`, `com_adr`) VALUES ('1', '2017-02-03 00:00:00', '2017-02-04 00:00:00', '1', '1');
 INSERT INTO `commande` (`com_id`, `com_date_validation`, `com_date_livraison`, `com_util`, `com_adr`) VALUES ('2', '2017-02-03 00:00:00', '2017-02-04 00:00:00', '2', '2');
@@ -65,8 +65,8 @@ INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('5', 'Sauce au Bleu');
 INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('6', 'Sauce Mayo');
 INSERT INTO `supplement` (`sup_id`, `sup_nom`) VALUES ('7', 'Sauce Ketchup');
 
-INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '2');
 INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '1');
+INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '2');
 INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '3');
 INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '5');
 INSERT INTO `l_sup_plat` (`lsupplat_plat`, `lsupplat_sup`) VALUES ('1', '6');
@@ -82,3 +82,7 @@ INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) 
 INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) VALUES ('3', '2', '1');
 INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) VALUES ('3', '4', '1');
 INSERT INTO `l_com_plat` (`lcomplat_com`, `lcomplat_plat`, `lcomplat_quantite`) VALUES ('4', '1', '2');
+
+INSERT INTO `l_complat_sup` (`lcomplatsup_lcomplat_com`, `lcomplatsup_lcomplat_plat`, `lcomplatsup_sup`) VALUES ('1', '1', '2');
+INSERT INTO `l_complat_sup` (`lcomplatsup_lcomplat_com`, `lcomplatsup_lcomplat_plat`, `lcomplatsup_sup`) VALUES ('4', '1', '2');
+INSERT INTO `l_complat_sup` (`lcomplatsup_lcomplat_com`, `lcomplatsup_lcomplat_plat`, `lcomplatsup_sup`) VALUES ('2', '3', '4');

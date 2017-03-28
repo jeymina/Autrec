@@ -32,6 +32,10 @@ public class Supplement implements Serializable{
 	@OneToMany(mappedBy="supplatSup")
 	private Collection<Sup_Plat> listSupplat = new ArrayList<Sup_Plat>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy="complasupSup")
+	private Collection<Complat_Sup> listComplasup = new ArrayList<Complat_Sup>();
+	
 	public int getId() {
 		return id;
 	}
