@@ -1,22 +1,13 @@
 package bean;
 
 public class Session {
-
-	private static Session INSTANCE;
 	
 	private String menuEnCours;
 	
 	private Utilisateur utilActif;
 	
-	private Session(){
-		this.menuEnCours = "Mon menu !";
+	public Session(){
 	}
-
-	public static Session getInstance(){
-		if (INSTANCE == null ) INSTANCE = new Session();
-		return INSTANCE;
-	}
-
 
 	public String getMenuEnCours() {
 		return menuEnCours;

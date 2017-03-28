@@ -1,7 +1,12 @@
 package bean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Restaurant {
 
+	private static Restaurant INSTANCE;
+	
 	private String nom;
 	
 	private String adresse;
@@ -11,6 +16,23 @@ public class Restaurant {
 	private String ville;
 	
 	private String tel;
+	
+	private Map<String, Session> sessions = new HashMap<String, Session>();
+
+	private Restaurant(){}
+	
+	public static Restaurant getInstance(){
+		if (INSTANCE == null ) INSTANCE = new Restaurant();
+		return INSTANCE;
+	}
+	
+	public Map<String, Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(Map<String, Session> sessions) {
+		this.sessions = sessions;
+	}
 
 	public String getNom() {
 		return nom;
@@ -50,6 +72,13 @@ public class Restaurant {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public Session getSessions(String remoteAddr) {
+		if (this.sessions.get(remoteAddr) == null){			
+			this.sessions.put(remoteAddr, new Session());
+		}
+		return this.sessions.get(remoteAddr);
 	}
 	
 }
