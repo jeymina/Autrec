@@ -202,17 +202,24 @@ CREATE TABLE IF NOT EXISTS `l_com_plat` (
 -- Table `l_complat_sup`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `l_complat_sup` (
-  `lcomplatsup_lcomplat` INT(11) NULL,
+  `lcomplatsup_lcomplat_com` INT(11) NOT NULL,
+  `lcomplatsup_lcomplat_plat` INT(11) NOT NULL,
   `lcomplatsup_sup` INT(11) NOT NULL,
-  PRIMARY KEY (`lcomplatsup_lcomplat`, `lcomplatsup_sup`),
+  PRIMARY KEY (`lcomplatsup_lcomplat_com`, `lcomplatsup_sup`, `lcomplatsup_lcomplat_plat`),
   INDEX `fk_lcomplatsup_sup_idx` (`lcomplatsup_sup` ASC),
+  INDEX `fk_lcomplatsup_complat_plat_idx` (`lcomplatsup_lcomplat_plat` ASC),
   CONSTRAINT `fk_lcomplatsup_sup`
     FOREIGN KEY (`lcomplatsup_sup`)
     REFERENCES `supplement` (`sup_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lcomplatsup_complat`
-    FOREIGN KEY (`lcomplatsup_lcomplat`)
+  CONSTRAINT `fk_lcomplatsup_complat_plat`
+    FOREIGN KEY (`lcomplatsup_lcomplat_plat`)
+    REFERENCES `l_com_plat` (`lcomplat_plat`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lcomplatsup_complat_com`
+    FOREIGN KEY (`lcomplatsup_lcomplat_com`)
     REFERENCES `l_com_plat` (`lcomplat_com`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
