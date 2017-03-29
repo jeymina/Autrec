@@ -20,7 +20,6 @@ import bean.Com_Plat;
 import bean.Commande;
 import bean.Ingredient;
 import bean.Mode;
-import bean.Supplement;
 import bean.Paiement;
 import bean.Plat;
 import bean.Restaurant;
@@ -31,7 +30,6 @@ import dao.CategorieDAO;
 import dao.CommandeDAO;
 import dao.IngredientDAO;
 import dao.ModeDAO;
-import dao.SupplementDAO;
 import dao.TestDAO;
 import dao.PaiementDAO;
 import dao.PlatDAO;
@@ -70,12 +68,6 @@ public class TestControle {
 	@RequestMapping(value="/testingMode", method=RequestMethod.GET)
 	public @ResponseBody List<Mode> testingMode() {
 		return ModeDAO.getListeMode();
-	}
-
-	// OK
-	@RequestMapping(value="/testingSupp", method=RequestMethod.GET)
-	public @ResponseBody List<Supplement> testingOpt() {
-		return SupplementDAO.getListeSupplement();
 	}
 
 	// OK
@@ -146,47 +138,9 @@ public class TestControle {
 	
 	@RequestMapping(value="/testPanier", method=RequestMethod.GET)
 	public @ResponseBody ResponseBean testPanier() {
-		ResponseBean response = new ResponseBean();		
-		int userId = 1;
-		int platId = 1;
-		int qte = 3;
-				
-		List<Commande> l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
-		if (l_commandeEnCour.size() == 0){
-			Commande cmd = new Commande();
-			cmd.setCommandeUtil(UtilisateurDAO.getUtilisateurbyId(userId));
-			CommandeDAO.createCommande(cmd);
-		}
-		l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
-		if (l_commandeEnCour.size() == 0){
-			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
-			response.getResponse().put("message","Echec lors de la création d'une commande");
-			return response;
-		}
-		Commande cmd = l_commandeEnCour.get(0);
-				
-		//TODO To change after fusion compla & compla_sup
-		Collection<Com_Plat> l_complat = cmd.getListComPlat();
-		boolean existing = false;
-		for (Com_Plat com_Plat : l_complat) {
-			if (com_Plat.getComplatPlat().getId() == platId){
-				// Une commande de ce plat existe deja, on incremente la quantite
-				CommandeDAO.ajouteUneQte(com_Plat, qte);
-				existing = true;
-			}
-		}
+		return null;
 		
-		if (!existing){
-			Com_Plat complat = new Com_Plat();
-			complat.setComplatCom(cmd);
-			complat.setComplatPlat(PlatDAO.getPlatById(platId));
-			complat.setQuantite(qte);
-			CommandeDAO.createComPlat(complat);
-		}
-
-		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
-		response.getResponse().put("idCmd", cmd.getId());
-		response.getResponse().put("prix", CommandeControle.computePrice(cmd));
-		return response;
 	}
+	
+	
 }

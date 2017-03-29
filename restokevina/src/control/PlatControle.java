@@ -21,6 +21,33 @@ public class PlatControle {
 		response.getResponse().put("listePlat", PlatDAO.getListePlat());
 		return response;
 	}
+	
+	@RequestMapping(value="/lesentrees",method=RequestMethod.GET)
+	public @ResponseBody ResponseBean lesentrees(){
+		System.out.println("getLesEntrees");
+		ResponseBean response = new ResponseBean();
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("listeEntree", PlatDAO.getListeEntree());
+		return response;
+	}
+	
+	@RequestMapping(value="/lesplatsprinc",method=RequestMethod.GET)
+	public @ResponseBody ResponseBean lesplatsprinc(){
+		System.out.println("getLesPlatPrinc");
+		ResponseBean response = new ResponseBean();
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("listePlatPrinc", PlatDAO.getListePlatPrinc());
+		return response;
+	}
+	
+	@RequestMapping(value="/lesdessert",method=RequestMethod.GET)
+	public @ResponseBody ResponseBean lesdessert(){
+		System.out.println("getLesDesserts");
+		ResponseBean response = new ResponseBean();
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("listeDessert", PlatDAO.getListeDessert());
+		return response;
+	}
 
 	public static float computePrice(Plat p) {
 		float somme = 0;

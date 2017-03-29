@@ -7,8 +7,6 @@ public class PanierRequest {
 	private String platId;
 	
 	private String qte;
-	
-	// TODO Supplement private String 
 
 	public String getUserId() {
 		return userId;

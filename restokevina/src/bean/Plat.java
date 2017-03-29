@@ -23,6 +23,9 @@ public class Plat  implements Serializable{
 	@Column(name="plat_nom")
 	private String nom;
 	
+	@Column(name="plat_path")
+	private String url;
+
 	@ManyToOne
 	@JoinColumn(name = "plat_cat")
 	private Categorie platCat;
@@ -33,9 +36,14 @@ public class Plat  implements Serializable{
 	
 	@OneToMany(mappedBy="ingplatPlat")
 	private Collection<Ing_Plat> listIngPlat = new ArrayList<Ing_Plat>();
-	
-	@OneToMany(mappedBy="supplatPlat")
-	private Collection<Sup_Plat> listSupPlat = new ArrayList<Sup_Plat>();
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public int getId() {
 		return id;
@@ -76,14 +84,5 @@ public class Plat  implements Serializable{
 	public void setListIngPlat(Collection<Ing_Plat> listIngPlat) {
 		this.listIngPlat = listIngPlat;
 	}
-
-	public Collection<Sup_Plat> getListSupPlat() {
-		return listSupPlat;
-	}
-
-	public void setListSupPlat(Collection<Sup_Plat> listSupPlat) {
-		this.listSupPlat = listSupPlat;
-	}
-
 
 }

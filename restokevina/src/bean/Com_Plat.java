@@ -31,18 +31,15 @@ public class Com_Plat  implements Serializable {
 	@JoinColumn(name="lcomplat_plat")
 	private Plat complatPlat;
 
-	@OneToMany(mappedBy="complatsupComplat")
-	private Collection<Complat_Sup> listComplasup = new ArrayList<Complat_Sup>();
-
 	@Column(name="lcomplat_quantite")
 	private int quantite;
 
-	public Collection<Complat_Sup> getListComplasup() {
-		return listComplasup;
+	public int getQuantite() {
+		return quantite;
 	}
 
-	public void setListComplasup(Collection<Complat_Sup> listComplasup) {
-		this.listComplasup = listComplasup;
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 
 	public Commande getComplatCom() {
@@ -59,15 +56,5 @@ public class Com_Plat  implements Serializable {
 
 	public void setComplatPlat(Plat complatPlat) {
 		this.complatPlat = complatPlat;
-	}
-
-	public int getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
-	
-	
+	}	
 }

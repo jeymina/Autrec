@@ -2,5 +2,5 @@
     pageEncoding="ISO-8859-1"%>
     
 <%
-	response.sendRedirect("lesutilisateurs.htm");
+	response.sendRedirect("getsession.htm");
 %>

@@ -95,25 +95,25 @@ public class CommandeControle {
 			return response;
 		}
 		Commande cmd = l_commandeEnCour.get(0);
-				
-		//TODO To change after fusion compla & compla_sup
+		
+		boolean existing_complat = false;
+		
 		Collection<Com_Plat> l_complat = cmd.getListComPlat();
-		boolean existing = false;
 		for (Com_Plat com_Plat : l_complat) {
 			if (com_Plat.getComplatPlat().getId() == platId){
-				// Une commande de ce plat existe deja, on incremente la quantite
+				// Une commande avec ce plat existe. On augmente la quantite
 				CommandeDAO.ajouteUneQte(com_Plat, qte);
-				existing = true;
+				existing_complat = true;
 			}
 		}
 		
-		if (!existing){
+		if (!existing_complat){
 			Com_Plat complat = new Com_Plat();
 			complat.setComplatCom(cmd);
 			complat.setComplatPlat(PlatDAO.getPlatById(platId));
 			complat.setQuantite(qte);
 			CommandeDAO.createComPlat(complat);
-		}
+		}	
 
 		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
 		response.getResponse().put("idCmd", cmd.getId());

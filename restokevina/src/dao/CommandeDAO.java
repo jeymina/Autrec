@@ -61,4 +61,22 @@ public class CommandeDAO {
 		DAO.getEM().persist(complat);
 		DAO.getEM().getTransaction().commit();
 	}
+
+	public static Com_Plat getComPlaById(int comId, int platId) {
+		System.out.println("***DEB getComPlaById : comId="+comId+" platId="+platId);
+		String req = "SELECT a FROM Com_Plat a, Commande b, Plat c WHERE a.complatCom=b.id AND a.complatPlat=c.id AND b.id=:comId AND c.id=:platId";
+		TypedQuery<Com_Plat> query = DAO.getEM().createQuery(req, Com_Plat.class);
+		query.setParameter("comId", comId);
+		query.setParameter("platId", platId);
+		Com_Plat compla;
+		try {
+			compla = query.getSingleResult();
+		}catch (Exception e) {
+			System.err.println("Pas d'adresse avec les infos comId='"+comId+"' platId='"+platId+"' trouvé");
+			return null;
+		}
+
+		System.out.println("***END getComPlaById : comId="+compla.getComplatCom().getId()+" platId="+compla.getComplatPlat().getId());
+		return compla;
+	}
 }
