@@ -153,7 +153,7 @@ var w = (isVert ? width : length);
 var h = (isVert ? length : width);
 
 if (isDOM || isIE4) {
-str += '<div class="navbar" id="' + itemID + '" style="position: absolute; left: ' + itemX + '; top: ' + itemY + '; width: ' + w + '; height: ' + h + ';  ';
+str += '<div class="navbar" id="' + itemID + '" style="position: absolute; text-align: center; left: ' + itemX + '; top: ' + itemY + '; width: ' + w + '; height: ' + h + ';  ';
 if (backCol) str += 'background: ' + backCol + '; ';
 str += '" ';
 }
@@ -232,8 +232,8 @@ var decalhoriz=50;
 var decalvert=22;
 var decalsous=22;
 var decalvertsm;
-    Xdeb=160;
-    Ydeb=200;
+    Xdeb=200;
+    Ydeb=0;
     espsousmen=0;
     decalvertsm=0;
     dim1=150;
