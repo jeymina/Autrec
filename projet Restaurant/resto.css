@@ -50,3 +50,10 @@ p.plat{
   vertical-align: top;
   z-index: 2;
 }
+
+#addButton{
+  position: relative;
+  float: right;
+  z-index:2;
+  background-color:#31b93f;
+}
