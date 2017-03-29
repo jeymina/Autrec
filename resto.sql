@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `plat` (
   `plat_id` INT(11) NOT NULL AUTO_INCREMENT,
   `plat_nom` VARCHAR(50) NOT NULL,
   `plat_cat` INT(11) NOT NULL,
-  `plat_path` VARCHAR(50) NULL,
+  `plat_path` VARCHAR(255) NULL,
   PRIMARY KEY (`plat_id`),
   INDEX `fk_plat_cat_idx` (`plat_cat` ASC),
   CONSTRAINT `fk_plat_cat`
