@@ -15,6 +15,28 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
         $location.path('/login');
     }
 
+    $scope.ajouterAuPanier = function(id){
+        console.log("ajouterAuPanier"+id);
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/ajoutepanier.htm",
+            method: "POST",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                platId: id,
+                userId: $scope.connected.data.response.session.utilActif.id,
+                qte: 1
+            }
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {         
+            }
+        }).catch(function(data) {
+            console.log("ajout pas fait");
+        });
+    }
+
 
     $scope.logout = function() {
         $http({
