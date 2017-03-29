@@ -21,13 +21,13 @@ public class CommandeDAO {
 	}
 	
 	public static void createCommande(Commande uneCommande) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(uneCommande);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updateCommande(Commande uneCommande) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(uneCommande);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -35,7 +35,7 @@ public class CommandeDAO {
 	public static void deleteCommande(int id) {
 		Commande uneCommande = DAO.getEM().find(Commande.class, id);
 		if (uneCommande != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(uneCommande);
 			DAO.getEM().getTransaction().commit();			
 		}
@@ -51,13 +51,13 @@ public class CommandeDAO {
 	}
 	
 	public static void ajouteUneQte(Com_Plat complat, int qte) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		complat.setQuantite(complat.getQuantite()+qte);
 		DAO.getEM().getTransaction().commit();	
 	}
 
 	public static void createComPlat(Com_Plat complat) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(complat);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -72,7 +72,7 @@ public class CommandeDAO {
 		try {
 			compla = query.getSingleResult();
 		}catch (Exception e) {
-			System.err.println("Pas d'adresse avec les infos comId='"+comId+"' platId='"+platId+"' trouvé");
+			System.err.println("Pas de commande avec les infos comId='"+comId+"' platId='"+platId+"' trouvé");
 			return null;
 		}
 

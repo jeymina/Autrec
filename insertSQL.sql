@@ -32,10 +32,12 @@ INSERT INTO `categorie` (`cat_id`, `cat_nom`) VALUES ('3', 'Poisson');
 INSERT INTO `categorie` (`cat_id`, `cat_nom`) VALUES ('4', 'Dessert');
 INSERT INTO `categorie` (`cat_id`, `cat_nom`) VALUES ('5', 'Entrée Chaude');
 
-INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`) VALUES ('1', 'Boeuf Bourgignon', '2');
-INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`) VALUES ('2', 'Salade de riz', '1');
-INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`) VALUES ('3', 'Paella', '2');
-INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`) VALUES ('4', 'Soupe à la Tomate', '5');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('1', 'Boeuf Bourgignon', '2', 'http://www.cuisine-astuce.com/wp-content/uploads/2013/02/Boeuf-Bourguignon-sans-alcool-recette-cuisine-halal.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('2', 'Salade de riz', '1','http://www.delices-du-monde.fr/photos-recettes/zoom/01-salade-de-riz-tropicale.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('3', 'Paella', '2', 'http://assets.epicurious.com/photos/5764583142e4a5ed66d1df6c/2:1/w_1260%2Ch_630/seafood-paella.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('4', 'Soupe à la Tomate', '5','http://cdn2.stylecraze.com/wp-content/uploads/2014/04/10-Amazing-Health-Benefits-Uses-Of-Tomato-Soup.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('5', 'Panacotta', '4','http://assets.epicurious.com/photos/5761d0268accf290434553aa/master/pass/panna-cotta.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('6', 'kouign Amann', '4','http://media.meltyfood.fr/article-2775754-fb/le-kouign-amann-a-new-york.jpg');
 
 INSERT INTO `ingredient` (`ing_id`, `ing_nom`) VALUES ('1', 'Boeuf');
 INSERT INTO `ingredient` (`ing_id`, `ing_nom`) VALUES ('2', 'Salade');

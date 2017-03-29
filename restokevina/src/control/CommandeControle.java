@@ -95,20 +95,12 @@ public class CommandeControle {
 			return response;
 		}
 		Commande cmd = l_commandeEnCour.get(0);
-		
-		boolean existing_complat = false;
-		
-		Collection<Com_Plat> l_complat = cmd.getListComPlat();
-		for (Com_Plat com_Plat : l_complat) {
-			if (com_Plat.getComplatPlat().getId() == platId){
-				// Une commande avec ce plat existe. On augmente la quantite
-				CommandeDAO.ajouteUneQte(com_Plat, qte);
-				existing_complat = true;
-			}
-		}
-		
-		if (!existing_complat){
-			Com_Plat complat = new Com_Plat();
+			
+		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat != null){
+			CommandeDAO.ajouteUneQte(complat, qte);			
+		} else {
+			complat = new Com_Plat();
 			complat.setComplatCom(cmd);
 			complat.setComplatPlat(PlatDAO.getPlatById(platId));
 			complat.setQuantite(qte);
@@ -117,12 +109,13 @@ public class CommandeControle {
 
 		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
 		response.getResponse().put("idCmd", cmd.getId());
-		response.getResponse().put("prix", computePrice(cmd));
+		response.getResponse().put("prix", computePrice(cmd.getId()));
 		return response;
 	}
 
-	public static float computePrice(Commande cmd) {
+	public static Float computePrice(int id) {
 		float somme = 0;
+		Commande cmd = CommandeDAO.getCommandeById(id);
 		Collection<Com_Plat> l_complat = cmd.getListComPlat();
 		for (Com_Plat com_Plat : l_complat) {
 			Plat p = com_Plat.getComplatPlat();

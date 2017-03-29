@@ -138,7 +138,10 @@ public class TestControle {
 	
 	@RequestMapping(value="/testPanier", method=RequestMethod.GET)
 	public @ResponseBody ResponseBean testPanier() {
+		System.out.println(CommandeControle.computePrice(5));
+		
 		return null;
+
 		
 	}
 	

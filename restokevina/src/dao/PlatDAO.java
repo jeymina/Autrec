@@ -20,13 +20,13 @@ public class PlatDAO {
 	}
 	
 	public static void createPlat(Plat unPlat) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unPlat);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updatePlat(Plat unPlat) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unPlat);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -34,7 +34,7 @@ public class PlatDAO {
 	public static void deletePlat(int id) {
 		Plat unPlat = DAO.getEM().find(Plat.class, id);
 		if (unPlat != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(unPlat);
 			DAO.getEM().getTransaction().commit();			
 		}

@@ -20,13 +20,13 @@ public class ModeDAO {
 	}
 	
 	public static void createMode(Mode unMode) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unMode);
 		DAO.getEM().getTransaction().commit();
 	}
 
 	public static void updateMode(Mode unMode) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unMode);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -34,7 +34,7 @@ public class ModeDAO {
 	public static void deleteMode(int id) {
 		Mode unMode = DAO.getEM().find(Mode.class, id);
 		if (unMode != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(unMode);
 			DAO.getEM().getTransaction().commit();			
 		}

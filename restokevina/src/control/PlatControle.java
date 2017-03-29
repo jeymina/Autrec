@@ -49,7 +49,7 @@ public class PlatControle {
 		return response;
 	}
 
-	public static float computePrice(Plat p) {
+	public static Float computePrice(Plat p) {
 		float somme = 0;
 		Collection<Ing_Plat> ing = p.getListIngPlat();
 		for (Ing_Plat ing_Plat : ing) {

@@ -36,14 +36,14 @@ public class AdresseDAO {
 	}
 	
 	public static void createAdresse(Adresse uneAdresse) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(uneAdresse);
 		DAO.getEM().getTransaction().commit();
 
 	}
 
 	public static void updateAdresse(Adresse uneAdresse) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(uneAdresse);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -51,7 +51,7 @@ public class AdresseDAO {
 	public static void deleteAdresse(int id) {
 		Adresse uneAdresse = DAO.getEM().find(Adresse.class, id);
 		if (uneAdresse != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(uneAdresse);
 			DAO.getEM().getTransaction().commit();
 		}

@@ -18,13 +18,13 @@ public class TestDAO {
 	}
 	
 	public static void createAdr(Adresse adr) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(adr);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updateADr(Adresse adr) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(adr);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -32,7 +32,7 @@ public class TestDAO {
 	public static void deleteADr(int id) {
 		Adresse adr = AdresseDAO.getAdresseById(id);
 		if (adr != null){
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(adr);
 			DAO.getEM().getTransaction().commit();			
 		}

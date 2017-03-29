@@ -21,13 +21,13 @@ public class UtilisateurDAO {
 	}
 	
 	public static void createUtilisateur(Utilisateur unUtilisateur) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unUtilisateur);
 		DAO.getEM().getTransaction().commit();
 	}
 
 	public static void updateUtilisateur(Utilisateur unUtilisateur) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unUtilisateur);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -35,7 +35,7 @@ public class UtilisateurDAO {
 	public static void deleteUtilisateur(int id) {
 		Utilisateur unUtilisateur = DAO.getEM().find(Utilisateur.class, id);
 		if (unUtilisateur != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(unUtilisateur);
 			DAO.getEM().getTransaction().commit();			
 		}

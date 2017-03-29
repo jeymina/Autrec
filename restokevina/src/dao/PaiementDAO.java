@@ -20,13 +20,13 @@ public class PaiementDAO {
 	}
 	
 	public static void createPaiement(Paiement unPaiement) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unPaiement);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updatePaiement(Paiement unPaiement) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unPaiement);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -34,7 +34,7 @@ public class PaiementDAO {
 	public static void deletePaiement(int id) {
 		Paiement unPaiement = DAO.getEM().find(Paiement.class, id);
 		if (unPaiement != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(unPaiement);
 			DAO.getEM().getTransaction().commit();			
 		}

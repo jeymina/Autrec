@@ -19,13 +19,13 @@ public class IngredientDAO {
 	}
 	
 	public static void createIngredient(Ingredient unIngredient) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unIngredient);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updateIngredient(Ingredient unIngredient) {
-		DAO.getEM().getTransaction().begin();
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 		DAO.getEM().persist(unIngredient);
 		DAO.getEM().getTransaction().commit();
 	}
@@ -33,7 +33,7 @@ public class IngredientDAO {
 	public static void deleteIngredient(int id) {
 		Ingredient unIngredient = DAO.getEM().find(Ingredient.class, id);
 		if (unIngredient != null) {
-			DAO.getEM().getTransaction().begin();
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(unIngredient);
 			DAO.getEM().getTransaction().commit();			
 		}
