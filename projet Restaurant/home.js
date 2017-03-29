@@ -9,6 +9,8 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
     $scope.init = function() {
         $scope.checkIfConnected();
         $scope.getListeEntrees();
+        $scope.getListePlats();
+        $scope.getListeDesserts();
     }
 
     $scope.redirect = function() {
@@ -102,6 +104,46 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
             if (data.data.response.retour === "success") {
                 console.log(data.data);
                 $scope.listeEntrees = data.data.response.listeEntree;
+            }
+        }).catch(function(data) {
+            console.log("GetSession de l'index n'est pas passé");
+        });
+
+    }
+
+    $scope.getListePlats = function() {
+        console.log("entrée dans le getListePlats");
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/lesplatsprinc.htm",
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log(data.data);
+                $scope.listePlats = data.data.response.listePlatPrinc;
+            }
+        }).catch(function(data) {
+            console.log("GetSession de l'index n'est pas passé");
+        });
+
+    }
+
+    $scope.getListeDesserts = function() {
+        console.log("entrée dans le getListeDesserts");
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/lesdessert.htm",
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log(data.data);
+                $scope.listeDesserts = data.data.response.listeDessert;
             }
         }).catch(function(data) {
             console.log("GetSession de l'index n'est pas passé");

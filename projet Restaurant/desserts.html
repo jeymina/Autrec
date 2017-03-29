@@ -1,4 +1,4 @@
-<html ng-app="monAppli" ng-controller="appCtrl" ng-init="initEntrees()">
+<html ng-app="monAppli" ng-controller="appCtrl">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
   <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
@@ -23,6 +23,10 @@
 
 <h1>Liste des Desserts</h1>
 
+<div class="plat" ng-repeat="dessert in listeDesserts" style="background-image: url({{dessert.url}})">
+  <p class ="plat">{{dessert.nom}}</p>
+  <button>Ajouter au panier</button>
+</div>
 
 </body>
 </html>
