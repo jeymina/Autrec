@@ -3,7 +3,7 @@ md-content .ext-content {
   padding: 50px;
   margin: 20px;
   background-color: #FFF2E0;
- }
+}
 
 #slides_control > div{
   height: 200px;
@@ -18,10 +18,35 @@ img{
   width: 400px;
   left:50%;
   top:20px;
- margin-left:-200px;
+  margin-left:-200px;
 }
 
 #carousel{
-background-color: #000000;
+  background-color: #000000;
 
+}
+
+img.plat {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+div.plat{
+  margin: auto;
+  margin-top: 5px;
+  height: 350px;
+  width: 50%;
+  background-size: 75% 100%;
+  background-repeat: no-repeat;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+p.plat{
+  position: relative;
+  align:center;
+  vertical-align: top;
+  z-index: 2;
 }

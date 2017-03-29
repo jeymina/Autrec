@@ -11,6 +11,10 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
         $scope.checkIfConnected();
     }
 
+    $scope.initEntrees = function() {
+        $scope.getListeEntrees();
+    }
+
     $scope.redirect = function() {
         $location.path('/login');
     }
@@ -60,6 +64,26 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
                     console.log("je met $scope.connected à null (index)")
                     $scope.connected = null;
                 }
+            }
+        }).catch(function(data) {
+            console.log("GetSession de l'index n'est pas passé");
+        });
+
+    }
+
+    $scope.getListeEntrees = function() {
+        console.log("entrée dans le checkIfConnected");
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/lesentrees.htm",
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log(data.data);
+                $scope.listeEntrees = data.data.response.listeEntree;
             }
         }).catch(function(data) {
             console.log("GetSession de l'index n'est pas passé");

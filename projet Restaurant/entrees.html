@@ -1,4 +1,4 @@
-<html>
+<html ng-app="monAppli" ng-controller="appCtrl" ng-init="initEntrees()">
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
   <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
@@ -13,23 +13,21 @@
 
   <link rel="stylesheet" src="resto.css"/>
 
-  <style>
-    .elementA {color: blue;}
-    .elementB {color: red;}
-  </style>
-
   <link rel="stylesheet" type="text/css" href="resto.css"/>
 
   <div ng-controller="appCtrl" ng-include="'navbar.html'"></div>
-</head>
+</head> 
 
-<body ng-app="monAppli">
-  <md-content ng-controller="appCtrl" class="md-padding">
-    <div class="ext-content">
-      External content for '<span>{{currentNavItem}}</span>'
-    </div>
-  </md-content>
-  <script src="home.js"></script>
-  
+<body>
+<script src="home.js"></script>
+
+<h1>Liste des Entrées</h1>
+
+<div class="plat" ng-repeat="entree in listeEntrees" 
+        style="background-image: url(http://www.cuisine-astuce.com/wp-content/uploads/2013/02/Boeuf-Bourguignon-sans-alcool-recette-cuisine-halal.jpg)">
+  <p class ="plat">{{entree.nom}}</p>
+  <button>Ajouter au panier</button>
+</div>
+
 </body>
 </html>
