@@ -2,10 +2,9 @@ var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', function($scope, $animate, $rootScope, $http, $location) {
     var vm = this;
-
     console.log("coucou");
     console.log();
-
+    
     $scope.init = function() {
         $scope.checkIfConnected();
         $scope.getListeEntrees();
@@ -53,9 +52,9 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
             if (data.data.response.retour === "success") {
                 console.log("déconnexion effectuée")
                 $scope.connected = null;
-                [].forEach.call(document.querySelectorAll('.navbar'), function (el) {
-                    el.style.visibility = 'hidden';
-                });          
+                //[].forEach.call(document.querySelectorAll('.navbar'), function (el) {
+                  //  el.style.visibility = 'hidden';
+               // });          
             }
         }).catch(function(data) {
             console.log("déconnexion pas effectuée");
@@ -89,6 +88,15 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
             console.log("GetSession de l'index n'est pas passé");
         });
 
+    }
+
+    function calculPrixPlat(plat) {
+            $scope.prixtotal = "teub";
+
+        if($scope.prixtotal !== 0){$scope.prixtotal=0;}
+        for(ing in plat.listIngPlat){
+            $scope.prixtotal += ing.montant;
+        }
     }
 
     $scope.getListeEntrees = function() {
