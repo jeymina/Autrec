@@ -253,10 +253,10 @@ var decalvertsm;
 menu[0] = new Array();
 menu[0][0] = new Menu(false, "", Xdeb, Ydeb, longueurcel, '','' , '', 'itemText');
 menu[0][1] = new Item("<div align='right'>Accueil</div>", '#/home', '', dim1, 5, 0);
-menu[0][2] = new Item("<div align='right'>News</div>", '#/Desserts', '', dim1, 5, 0);
-menu[0][3] = new Item("<div align='right'>Streameur </div>", '#', '', dim1, 5, 1);
-menu[0][4] = new Item("<div align='right'> O&ugrave; nous trouver </div>", '#/plats ', '', dim1, 5, 0);
-menu[0][5] = new Item("<div align='right'> Contact</div>", 'page.php?num=4', '', dim1, 5, 0);
+menu[0][2] = new Item("<div align='right'>Entr&eacute;es</div>", '#/entrees', '', dim1, 5, 0);
+menu[0][3] = new Item("<div align='right'>Plats </div>", '#/plats', '', dim1, 5, 0);
+menu[0][4] = new Item("<div align='right'> Desserts </div>", '#/desserts', '', dim1, 5, 0);
+menu[0][5] = new Item("<div align='right'> Contact</div>", '"/contact"', '', dim1, 5, 0);
 
 
 menu[1] = new Array();
