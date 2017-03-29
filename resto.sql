@@ -119,15 +119,6 @@ CREATE TABLE IF NOT EXISTS `plat` (
 
 
 -- -----------------------------------------------------
--- Table `supplement`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `supplement` (
-  `sup_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `sup_nom` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`sup_id`));
-
-
--- -----------------------------------------------------
 -- Table `ingredient`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ingredient` (
@@ -159,31 +150,12 @@ CREATE TABLE IF NOT EXISTS `l_ing_plat` (
 
 
 -- -----------------------------------------------------
--- Table `l_sup_plat`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `l_sup_plat` (
-  `lsupplat_plat` INT(11) NOT NULL AUTO_INCREMENT,
-  `lsupplat_sup` INT(11) NOT NULL,
-  PRIMARY KEY (`lsupplat_plat`, `lsupplat_sup`),
-  INDEX `fk_loptplat_opt_idx` (`lsupplat_sup` ASC),
-  CONSTRAINT `fk_loptplat_plat`
-    FOREIGN KEY (`lsupplat_plat`)
-    REFERENCES `plat` (`plat_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lsupplat_sup`
-    FOREIGN KEY (`lsupplat_sup`)
-    REFERENCES `supplement` (`sup_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
 -- Table `l_com_plat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `l_com_plat` (
   `lcomplat_com` INT(11) NOT NULL AUTO_INCREMENT,
   `lcomplat_plat` INT(11) NOT NULL,
+  `lcomplat_quantite` INT(11) NOT NULL,
   PRIMARY KEY (`lcomplat_com`, `lcomplat_plat`),
   INDEX `fk_lcomplat_plat_idx` (`lcomplat_plat` ASC),
   CONSTRAINT `fk_lcomplat_com`
@@ -194,34 +166,6 @@ CREATE TABLE IF NOT EXISTS `l_com_plat` (
   CONSTRAINT `fk_lcomplat_plat`
     FOREIGN KEY (`lcomplat_plat`)
     REFERENCES `plat` (`plat_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
--- -----------------------------------------------------
--- Table `l_complat_sup`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `l_complat_sup` (
-  `lcomplatsup_lcomplat_com` INT(11) NOT NULL,
-  `lcomplatsup_lcomplat_plat` INT(11) NOT NULL,
-  `lcomplatsup_sup` INT(11) NOT NULL,
-  `lcomplatsup_quantite` INT(11) NOT NULL,
-  PRIMARY KEY (`lcomplatsup_lcomplat_com`, `lcomplatsup_sup`, `lcomplatsup_lcomplat_plat`),
-  INDEX `fk_lcomplatsup_sup_idx` (`lcomplatsup_sup` ASC),
-  INDEX `fk_lcomplatsup_complat_plat_idx` (`lcomplatsup_lcomplat_plat` ASC),
-  CONSTRAINT `fk_lcomplatsup_sup`
-    FOREIGN KEY (`lcomplatsup_sup`)
-    REFERENCES `supplement` (`sup_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lcomplatsup_complat_plat`
-    FOREIGN KEY (`lcomplatsup_lcomplat_plat`)
-    REFERENCES `l_com_plat` (`lcomplat_plat`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lcomplatsup_complat_com`
-    FOREIGN KEY (`lcomplatsup_lcomplat_com`)
-    REFERENCES `l_com_plat` (`lcomplat_com`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
