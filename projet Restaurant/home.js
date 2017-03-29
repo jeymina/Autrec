@@ -88,13 +88,13 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
 
     }
 
-    function calculPrixPlat(plat) {
-            $scope.prixtotal = "teub";
-
-        if($scope.prixtotal !== 0){$scope.prixtotal=0;}
-        for(ing in plat.listIngPlat){
-            $scope.prixtotal += ing.montant;
+    $scope.calculPrixPlat = function(plat) {
+        var prix = 0;
+        var ling = plat.listIngPlat;
+        for(ing in ling){
+            prix += ling[ing].montant;
         }
+        return prix;
     }
 
     $scope.getListePlats = function() {

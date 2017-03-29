@@ -22,10 +22,10 @@
 <script src="home.js"></script>
 
 <h1>Liste des Entrées</h1>
-bonjour{{connected}}
-<div class="plat" ng-repeat="entree in listeEntrees" style="background-image: url({{entree.url}})">
-  <p class ="plat">{{entree.nom}}</p>
 
+<div class="plat" ng-repeat="entree in listeEntrees" style="background-image: url({{entree.url}})">
+  <p class="plat">{{entree.nom}}</p>
+  <p class="prix">{{calculPrixPlat(entree)}}</p>
   <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
   <p class="plat"> {{}}</p>
 </div>
