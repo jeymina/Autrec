@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `plat` (
   `plat_id` INT(11) NOT NULL AUTO_INCREMENT,
   `plat_nom` VARCHAR(50) NOT NULL,
   `plat_cat` INT(11) NOT NULL,
+  `plat_path` VARCHAR(50) NULL,
   PRIMARY KEY (`plat_id`),
   INDEX `fk_plat_cat_idx` (`plat_cat` ASC),
   CONSTRAINT `fk_plat_cat`
@@ -183,7 +184,6 @@ CREATE TABLE IF NOT EXISTS `l_sup_plat` (
 CREATE TABLE IF NOT EXISTS `l_com_plat` (
   `lcomplat_com` INT(11) NOT NULL AUTO_INCREMENT,
   `lcomplat_plat` INT(11) NOT NULL,
-  `lcomplat_quantite` INT(11) NOT NULL,
   PRIMARY KEY (`lcomplat_com`, `lcomplat_plat`),
   INDEX `fk_lcomplat_plat_idx` (`lcomplat_plat` ASC),
   CONSTRAINT `fk_lcomplat_com`
@@ -205,6 +205,7 @@ CREATE TABLE IF NOT EXISTS `l_complat_sup` (
   `lcomplatsup_lcomplat_com` INT(11) NOT NULL,
   `lcomplatsup_lcomplat_plat` INT(11) NOT NULL,
   `lcomplatsup_sup` INT(11) NOT NULL,
+  `lcomplatsup_quantite` INT(11) NOT NULL,
   PRIMARY KEY (`lcomplatsup_lcomplat_com`, `lcomplatsup_sup`, `lcomplatsup_lcomplat_plat`),
   INDEX `fk_lcomplatsup_sup_idx` (`lcomplatsup_sup` ASC),
   INDEX `fk_lcomplatsup_complat_plat_idx` (`lcomplatsup_lcomplat_plat` ASC),
