@@ -1,6 +1,5 @@
 var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
-
 monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', function($scope, $animate, $rootScope, $http, $location) {
     var vm = this;
 
@@ -9,9 +8,6 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
 
     $scope.init = function() {
         $scope.checkIfConnected();
-    }
-
-    $scope.initEntrees = function() {
         $scope.getListeEntrees();
     }
 
@@ -72,7 +68,7 @@ monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$loc
     }
 
     $scope.getListeEntrees = function() {
-        console.log("entrée dans le checkIfConnected");
+        console.log("entrée dans le getListeEntrees");
         $http({
             url: "http://25.66.6.53:8080/restokevina/lesentrees.htm",
             method: "GET",
