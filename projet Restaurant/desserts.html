@@ -25,7 +25,7 @@
 
 <div class="plat" ng-repeat="dessert in listeDesserts" style="background-image: url({{dessert.url}})">
   <p class ="plat">{{dessert.nom}}</p>
-  <button>Ajouter au panier</button>
+  <button ng-show="connected !== null" ng-click="ajouterAuPanier(dessert.id)">Ajouter au panier</button>
 </div>
 
 </body>
