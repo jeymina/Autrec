@@ -47,9 +47,10 @@
                 });
             }
 
-            $scope.ajouterAuPanier = function(id, qte) {
+            $scope.ajouterAuPanier = function(id, nom) {
                 console.log("ajouterAuPanier" + id);
-                if( confirm("tu veux vraiment ajouter cette merde dans ton panier ? ")){
+                var quantite = document.getElementById("qte"+id).value;
+                if( confirm("Ajouter "+quantite+" \""+nom+"\" à votre panier ? ")){
                     $http({
                         url: "http://25.66.6.53:8080/restokevina/ajoutepanier.htm",
                         method: "POST",
@@ -60,8 +61,7 @@
                         data: {
                             platId: id,
                             userId: $scope.connected.data.response.session.utilActif.id,
-                            qte: document.getElementById('qte').value
-
+                            qte: quantite
                         }
                     }).then(function(data) {
 
@@ -75,9 +75,10 @@
                 }
             }
 
-            $scope.supprimerDuPanier = function(id) {
-                console.log("ajouterAuPanier" + id);
-                if( confirm("tu veux vraiment retirer cette merde de ton panier ? ")){
+            $scope.supprimerDuPanier = function(id, nom) {
+                console.log("supprimerDuPanier" + id);
+                var quantite = document.getElementById("qte"+id).value;
+                if( confirm("Retirer "+quantite+" \""+nom+"\" de votre panier ? ")){
                     $http({
                         url: "http://25.66.6.53:8080/restokevina/removefrompanier.htm",
                         method: "POST",
@@ -88,7 +89,7 @@
                         data: {
                             platId: id,
                             userId: $scope.connected.data.response.session.utilActif.id,
-                            qte: document.getElementById('qte').value
+                            qte: quantite
                         }
                     }).then(function(data) {
                         if (data.data.response.retour === "success") {

@@ -12,6 +12,6 @@
   </a>
   <p class="plat">{{plats.nom}}</p>
   <p class="prix">{{calculPrixPlat(plats)}} €</p>
-  <input ng-show="connected !== null" type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
-  <button ng-show="connected !== null" id="addButton" class="btn btn-primary" ng-click="ajouterAuPanier(plats.id)">Ajouter au panier</button>
+  <input ng-show="connected !== null" type="number" class="qte" id="qte{{plats.id}}" name="quantity" value="1" min="1" max="99">
+  <button ng-show="connected !== null" id="addButton" class="btn btn-primary" ng-click="ajouterAuPanier(plats.id, plats.nom)">Ajouter au panier</button>
 </div>

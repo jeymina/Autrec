@@ -4,8 +4,8 @@
 
 <div class="plat" ng-repeat="plat in monPanier.response.commande.listComPlat">
     <p class="plat">{{plat.complatPlat.nom}} x {{plat.quantite}}</p>
-    <input type="number" class="qte" id="qte" name="qte" value="0" min="0" max="{{plat.quantite}}"/>
-    <button id="addButton" class="btn btn-primary"  ng-click="supprimerDuPanier(plat.complatPlat.id)">Supprimer du panier</button>
+    <input type="number" class="qte" id="qte{{plat.complatPlat.id}}" name="qte" value="0" min="0" max="{{plat.quantite}}"/>
+    <button id="addButton" class="btn btn-primary"  ng-click="supprimerDuPanier(plat.complatPlat.id, plat.complatPlat.nom)">Supprimer du panier</button>
 </div>
 <div ng-show="monPanier != null">
     <button id="validButton" class="btn btn-primary"  ng-click="validerLaCommande()">Valider la commande</button>
