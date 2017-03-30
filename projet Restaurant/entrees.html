@@ -4,14 +4,15 @@
  
   <a class="infobulle" style="color:#9af47c;" href=""> Ingrédients
     <span>
+      <p style="text-decoration: underline #9af47c;">Liste des Ingrédients :</p>
       <p ng-repeat="ingredient in entree.listIngPlat">
-        {{ingredient.ingplatIng.nom}} bite
+        {{ingredient.portion}}g de {{ingredient.ingplatIng.nom}} : {{ingredient.montant}}€
       </p>
     </span>
   </a>
    <p class="plat">{{entree.nom}}</p>
   <p class="prix">{{calculPrixPlat(entree)}} €</p>
-  <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
-  <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
+  <input ng-show="connected !== null" type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
+  <button ng-show="connected !== null" id="addButton" class="btn btn-primary" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
   
 </div>

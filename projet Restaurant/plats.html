@@ -4,13 +4,14 @@
 <div class="plat" ng-repeat="plats in listePlats track by plats.nom" style="background-image: url(pics/{{plats.url}})">
   <a class="infobulle" style="color:#9af47c;" href=""> Ingrédients
     <span>
-    <p ng-repeat="ingredient in plats.listIngPlat">
-        {{ingredient.ingplatIng.nom}} bite
+      <p style="text-decoration: underline #9af47c;">Liste des Ingrédients :</p>
+      <p ng-repeat="ingredient in plats.listIngPlat">
+        {{ingredient.portion}}g de {{ingredient.ingplatIng.nom}} : {{ingredient.montant}}€
       </p>
     </span>
   </a>
   <p class="plat">{{plats.nom}}</p>
   <p class="prix">{{calculPrixPlat(plats)}} €</p>
-  <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
-  <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(plats.id)">Ajouter au panier</button>
+  <input ng-show="connected !== null" type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
+  <button ng-show="connected !== null" id="addButton" class="btn btn-primary" ng-click="ajouterAuPanier(plats.id)">Ajouter au panier</button>
 </div>
