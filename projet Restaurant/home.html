@@ -1,8 +1,9 @@
 <div id="navbar"></div>
-<div ng-show="connected !== null" style="position: relative; top:200px;">
-	<p>Bonjour {{connected.data.response.session.utilActif.nom}} :D</p>
-	<a ng-click = logout() class="btn btn-primary">Logout</a>
+<div class="buttonsLog">
+	<a ng-show="connected !== null" ng-click=logout() class="btn btn-primary">Logout</a>
+	<a ng-show="connected === null" ng-click=redirect() class="btn btn-primary">Login</a>
 </div>
-<div ng-show="connected === null">
-	<a ng-click=redirect() class="btn btn-primary" style="position: relative; top:200px;">Login</a>
+<div style="position: relative; top: 20px">
+	<h1 class="titreResto">Resto Kevina</h1>
 </div>
+<!--<p ng-show="connected !== null">Bienvenue {{connected.data.response.session.utilActif.nom}}</p>-->
