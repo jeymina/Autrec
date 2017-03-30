@@ -33,7 +33,7 @@ INSERT INTO `categorie` (`cat_id`, `cat_nom`) VALUES ('4', 'Dessert');
 INSERT INTO `categorie` (`cat_id`, `cat_nom`) VALUES ('5', 'Entrée Chaude');
 
 INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('1', 'Boeuf Bourgignon', '2', 'http://www.cuisine-astuce.com/wp-content/uploads/2013/02/Boeuf-Bourguignon-sans-alcool-recette-cuisine-halal.jpg');
-INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('2', 'Salade de Riz', '1','https://www.avocadocentral.com/sites/default/files/styles/banner/public/Avocado-Mango-Rice-Salad.jpg');
+INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('2', 'Salade de Riz', '1','http://www.riceselect.com/wp-content/uploads/2016/05/Mint-and-Apple-Brown-Rice-Salad-1.jpg');
 INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('3', 'Paella', '2', 'http://assets.epicurious.com/photos/5764583142e4a5ed66d1df6c/2:1/w_1260%2Ch_630/seafood-paella.jpg');
 INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('4', 'Soupe à la Tomate', '5','http://cdn2.stylecraze.com/wp-content/uploads/2014/04/10-Amazing-Health-Benefits-Uses-Of-Tomato-Soup.jpg');
 INSERT INTO `plat` (`plat_id`,`plat_nom`, `plat_cat`, `plat_path`) VALUES ('5', 'Panacotta', '4','http://assets.epicurious.com/photos/5761d0268accf290434553aa/master/pass/panna-cotta.jpg');
