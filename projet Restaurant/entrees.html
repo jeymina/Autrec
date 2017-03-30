@@ -26,6 +26,7 @@
 <div class="plat" ng-repeat="entree in listeEntrees" style="background-image: url({{entree.url}})">
   <p class="plat">{{entree.nom}}</p>
   <p class="prix">{{calculPrixPlat(entree)}} €</p>
+  <input type="number" class="qte" name="quantity" min="1" max="99">
   <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
   <p class="plat"> {{}}</p>
 </div>

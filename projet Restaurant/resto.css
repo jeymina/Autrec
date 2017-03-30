@@ -70,11 +70,32 @@ p.prix{
   z-index: 2;
 }
 
-#addButton{
-  float: right;
+input.qte{
+
+ color: #9af47c;
+  opacity: 0.75;
+  text-shadow: 2px 2px 5px #222222;
+  font-family: 'Aclonica';
+  font-size: 35px;
+  font-style: italic;
+  text-align : center;
+  width: 150px;
   margin-right: 5%;
-  margin-top: 10%;
+  margin-top: 5%;
+  z-index: 2;
+  float: right;
+  clear: both;
+}
+
+
+#addButton{
+  
+  float: right;
+ 
+  margin-right: 5%;
+  margin-top: 5%;
   z-index:2;
   background-color:#31b93f;
   box-shadow: 2px 2px 5px #222222;
+ clear: both;
 }
