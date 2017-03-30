@@ -1,7 +1,7 @@
 <div id="navbar"></div>
 <h1>Liste des Desserts</h1>
 
-<div class="plat" ng-repeat="dessert in listeDesserts track by dessert.nom" style="background-image: url({{dessert.url}})">
+<div class="plat" ng-repeat="dessert in listeDesserts track by dessert.nom" style="background-image: url(pics/{{dessert.url}})">
   <a class="infobulle" style="color:#9af47c;" href=""> Ingrédients
     <span>
     <p ng-repeat="ingredient in dessert.listIngPlat">

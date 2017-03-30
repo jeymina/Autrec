@@ -133,21 +133,6 @@ h1.titreResto{
   float: left;
   margin-left: 20%;
 }
-
- a.infobulle{
-  
-  color: #9af47c;
-  text-shadow: 2px 2px 5px #222222;
-  font-family: 'Aclonica';
-  font-size: 15px;
-  font-style: italic;
-  text-align: right;
-  margin-right: 5%;
-  margin-top: 5%;
-  z-index: 2;
-  float: right;
-  clear: both;
- }
  
 input.qte {
   color: #9af47c;
