@@ -146,10 +146,10 @@
             console.log("entrée dans le getPanier");
             $http({
                 url: "http://25.66.6.53:8080/restokevina/getpanier.htm",
-                method: "POST",
+                method: "GET",
                 withCredentials: true,
-                data: {
-                    id: $scope.connected.data.response.session.utilActif.id
+                params: {
+                    id: parseInt($scope.connected.data.response.session.utilActif.id)
                 },
                 headers: {
                     'Content-Type': 'application/json'
