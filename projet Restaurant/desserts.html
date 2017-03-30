@@ -23,7 +23,7 @@
 
 <h1>Liste des Desserts</h1>
 
-<div class="plat" ng-repeat="dessert in listeDesserts" style="background-image: url({{dessert.url}})">
+<div class="plat" ng-repeat="dessert in listeDesserts track by dessert.nom" style="background-image: url({{dessert.url}})">
   <p class="plat">{{dessert.nom}}</p>
   <p class="prix">{{calculPrixPlat(dessert)}} €</p> 
   <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">

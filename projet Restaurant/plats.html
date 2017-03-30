@@ -23,7 +23,7 @@
 
 <h1>Liste des Plats</h1>
 
-<div class="plat" ng-repeat="plats in listePlats" style="background-image: url({{plats.url}})">
+<div class="plat" ng-repeat="plats in listePlats track by plats.nom" style="background-image: url({{plats.url}})">
   <p class="plat">{{plats.nom}}</p>
   <p class="prix">{{calculPrixPlat(plats)}} €</p>
   <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
