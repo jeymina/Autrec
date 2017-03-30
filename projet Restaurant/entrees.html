@@ -5,8 +5,9 @@
   <p class="prix">{{calculPrixPlat(entree)}} €</p>
   <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
   <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
-  <a href=""> Passez la souris sur ce lien !
+  <a href=""> Passez la souris sur ce lien
     <span ng-repeat="ingredient in entree.listIngPlat">
-    {{ingredient.nom}} bite
+      {{ingredient.nom}} bite
     </span>
-  </div>
+  </a>
+</div>
