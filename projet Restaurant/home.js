@@ -268,7 +268,7 @@
     monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider
             .when("/home", {
-                templateUrl: "index.html",
+                templateUrl: "home.html",
                 controller: "appCtrl"
             })
             .when("/desserts", {

@@ -1,26 +1,4 @@
-<html ng-app="monAppli" ng-controller="appCtrl">
-<head>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-  <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
-  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
-  <script src="ui-bootstrap-tpls-2.4.0.min.js "></script> 
-  <link rel="stylesheet" href="assets/bootstrap.min.css"/>
-  <script src="home.js"></script>
-
-  <link href='https://fonts.googleapis.com/css?family=Aclonica' rel="stylesheet" src="resto.css"/>
-  <link href='https://fonts.googleapis.com/css?family=Alex Brush' rel="stylesheet" src="resto.css"/>
-  <link rel="stylesheet" type="text/css" href="resto.css"/>
-
-  <div id="navbar"></div>
-</head> 
-
-<body>
-<script src="home.js"></script>
-
+<div id="navbar"></div>
 <h1>Liste des Plats</h1>
 
 <div class="plat" ng-repeat="plats in listePlats track by plats.nom" style="background-image: url({{plats.url}})">
@@ -29,6 +7,3 @@
   <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
   <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(plats.id)">Ajouter au panier</button>
 </div>
-
-</body>
-</html>

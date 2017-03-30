@@ -1,27 +1,8 @@
-<html >
-<meta charset="utf-8" />
-
-<head>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-    <script src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
-    <script src="menu will.js"></script>
-    <link rel="stylesheet" href="assets/bootstrap.min.css" />
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <link href="app-content/app.css" rel="stylesheet" />
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-   
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    
-    <div>
-        <script type="text/javascript">writeMenus()</script>
-    </div>
-    
-</body>
-
-</html>
+<div id="navbar"></div>
+<div ng-show="connected !== null" style="position: relative; top:200px;">
+	<p>Bonjour {{connected.data.response.session.utilActif.nom}} :D</p>
+	<a ng-click = logout() class="btn btn-primary">Logout</a>
+</div>
+<div ng-show="connected === null">
+	<a ng-click=redirect() class="btn btn-primary" style="position: relative; top:200px;">Login</a>
+</div>
