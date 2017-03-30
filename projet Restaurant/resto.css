@@ -62,6 +62,16 @@ a:hover span, a:focus span{
   clear: both;
  }
 
+ a.infobullePanier{
+  
+  color: #9af47c;
+  text-shadow: 2px 2px 5px #222222;
+  font-family: 'Aclonica';
+  font-size: 15px;
+  font-style: italic;
+  text-align: right;
+  z-index: 2;
+ }
 
 img {
   margin: auto;
@@ -103,10 +113,10 @@ div.panier {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-h1.panier {
+span.panier {
   position: relative;
   text-align: left;
-  margin-left: 20px;
+  margin-top: 10px;
   font-family: 'Alex Brush';
   font-size: 30px;
   z-index: 2;
@@ -115,7 +125,6 @@ h1.panier {
 p.panier {
   position: relative;
   text-align: left;
-  margin-left: 20px;
   z-index: 2;
 }
 

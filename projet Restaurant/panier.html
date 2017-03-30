@@ -3,8 +3,18 @@
 <h1>Votre panier</h1>
 
 <div class="panier" ng-repeat="plat in monPanier.response.commande.listComPlat">
-	<div style="float: left; vertical-align: center;">
-	    <h1 class="panier">{{plat.complatPlat.nom}}</h1>
+	<div style="float: left; text-align: left; margin-left: 30px;margin-top: 10px;">
+		<div>
+			<span class="panier">{{plat.complatPlat.nom}} - </span>
+			<a class="infobullePanier" style="color:#9af47c;" href=""> Ingrédients
+				<span>
+					<p style="text-decoration: underline #9af47c;">Liste des Ingrédients :</p>
+					<p ng-repeat="ingredient in plat.complatPlat.listIngPlat">
+						{{ingredient.portion}}g de {{ingredient.ingplatIng.nom}}
+					</p>
+				</span>
+			</a>
+		</div>
 	    <p class="panier">** Quantite : {{plat.quantite}}  ** Montant total : {{calculPrixPlatPanier(plat)}} € **</p>
 	</div>
     <button id="addButtonPanier" class="btn btn-primary"  ng-click="supprimerDuPanier(plat.complatPlat.id, plat.complatPlat.nom)">Supprimer du panier</button>
