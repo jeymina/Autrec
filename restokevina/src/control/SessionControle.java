@@ -19,6 +19,7 @@ import bean.Restaurant;
 import bean.Session;
 import bean.Utilisateur;
 import dao.AdresseDAO;
+import dao.DAO;
 import dao.UtilisateurDAO;
 import dto.ConnexionRequest;
 import dto.ResponseBean;

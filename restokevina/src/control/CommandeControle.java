@@ -1,6 +1,5 @@
 package control;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -56,6 +55,103 @@ public class CommandeControle {
 		return response;
 	}
 
+	@RequestMapping(value="/getpanier",method=RequestMethod.GET)
+	public  @ResponseBody ResponseBean getpanier(@RequestParam("id") int id) {
+		ResponseBean response = new ResponseBean();
+		
+		List<Commande> list_cmd = CommandeDAO.getCommandeEnCour(id);
+		if(list_cmd == null || list_cmd.isEmpty()){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Aucune commande active");
+			return response;
+		}
+		if(list_cmd.size() > 1){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Plus d'une commande active");
+			return response;
+		}
+		
+		Commande cmd = list_cmd.get(0);
+		if (cmd == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Commande mal initialisee Null Pointeur");
+			return response;
+		}
+				
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("commande", cmd);
+		return response;
+		
+	}
+	
+	@RequestMapping(value="/removefrompanier",method=RequestMethod.POST)
+	public  @ResponseBody ResponseBean removefrompanier(@RequestBody @Valid PanierRequest request, BindingResult bres) {
+		ResponseBean response = new ResponseBean();
+		int userId, platId, qte;
+		try{
+			userId = Integer.parseInt(request.getUserId());			
+		}catch ( NumberFormatException e) {
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Entier attendu pour le paramètre 'userId'");
+			return response;
+		}
+		try{
+			platId = Integer.parseInt(request.getPlatId());			
+		}catch ( NumberFormatException e) {
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Entier attendu pour le paramètre 'platId'");
+			return response;
+		}
+		try{
+			qte = Integer.parseInt(request.getQte());			
+		}catch ( NumberFormatException e) {
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Entier attendu pour le paramètre 'qte'");
+			return response;
+		}
+
+		List<Commande> l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour == null || l_commandeEnCour.isEmpty()){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande en cours trouvée");
+			return response;
+		}
+		if (l_commandeEnCour.size() > 1){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Plus d'une commande en cours trouvée");
+			return response;
+		}
+		Commande cmd = l_commandeEnCour.get(0);
+		if (cmd == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Commande en cours égale à NULL");
+			return response;
+		}
+		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande pour ce plat trouvée");
+			return response;
+		}
+		
+		int qteActuelle = complat.getQuantite();
+		if (qte > qteActuelle) qte = qteActuelle;
+		
+		CommandeDAO.removeUneQte(complat, qte);
+		complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande pour ce plat trouvée (apres modif QTE)");
+			return response;
+		}
+		if (complat.getQuantite() <= 0){
+			CommandeDAO.removeComPla(complat);
+		}
+		
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		return response;
+	}
+	
 	@RequestMapping(value="/ajoutepanier",method=RequestMethod.POST)
 	public  @ResponseBody ResponseBean ajoutePanier(@RequestBody @Valid PanierRequest request, BindingResult bres) {
 		ResponseBean response = new ResponseBean();		
@@ -95,7 +191,7 @@ public class CommandeControle {
 			return response;
 		}
 		Commande cmd = l_commandeEnCour.get(0);
-			
+
 		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
 		if (complat != null){
 			CommandeDAO.ajouteUneQte(complat, qte);			
@@ -116,7 +212,7 @@ public class CommandeControle {
 	public static Float computePrice(int id) {
 		float somme = 0;
 		Commande cmd = CommandeDAO.getCommandeById(id);
-		Collection<Com_Plat> l_complat = cmd.getListComPlat();
+		List<Com_Plat> l_complat = CommandeDAO.getComPlaById(cmd.getId());
 		for (Com_Plat com_Plat : l_complat) {
 			Plat p = com_Plat.getComplatPlat();
 			somme += PlatControle.computePrice(p) * com_Plat.getQuantite();
