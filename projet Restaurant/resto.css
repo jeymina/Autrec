@@ -1,101 +1,105 @@
-
 md-content .ext-content {
-  padding: 50px;
-  margin: 20px;
-  background-color: #FFF2E0;
+    padding: 50px;
+    margin: 20px;
+    background-color: #FFF2E0;
 }
 
-#slides_control > div{
-  height: 200px;
+#slides_control > div {
+    height: 200px;
 }
 
-img{
-  margin:auto;
-  width: 400px;
+img {
+    margin: auto;
+    width: 400px;
 }
+
 #slides_control {
-  position:absolute;
-  width: 400px;
-  left:50%;
-  top:20px;
-  margin-left:-200px;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: 20px;
+    margin-left: -200px;
 }
 
-#carousel{
-  background-color: #000000;
-
+#carousel {
+    background-color: #000000;
 }
 
 img.plat {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
-div.plat{
-  margin: auto;
-  margin-top: 20px;
-  height: 350px;
-  width: 50%;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px #222222;
-  background-size: 75% 100%;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #000000;
+div.plat {
+    margin: auto;
+    margin-top: 20px;
+    height: 350px;
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #222222;
+    background-size: 75% 100%;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #000000;
 }
 
-p.plat{
-  font-family: 'Alex Brush';
-  font-size: 30px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.5);
-  position: relative;
-  align:center;
-  vertical-align: top;
-  z-index: 2;
+p.plat {
+    font-family: 'Alex Brush';
+    font-size: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    align: center;
+    vertical-align: top;
+    z-index: 2;
 }
 
-p.prix{
-  color: #9af47c;
-  text-shadow: 2px 2px 5px #222222;
-  font-family: 'Aclonica';
-  font-size: 35px;
-  font-style: italic;
-  text-align: right;
-  margin-right: 5%;
-  margin-top: 10%;
-  z-index: 2;
+p.prix {
+    color: #9af47c;
+    text-shadow: 2px 2px 5px #222222;
+    font-family: 'Aclonica';
+    font-size: 35px;
+    font-style: italic;
+    text-align: right;
+    margin-right: 5%;
+    margin-top: 10%;
+    z-index: 2;
 }
 
-input.qte{
-
- color: #9af47c;
-  opacity: 0.75;
-  text-shadow: 2px 2px 5px #222222;
-  font-family: 'Aclonica';
-  font-size: 35px;
-  font-style: italic;
-  text-align : center;
-  width: 150px;
-  margin-right: 5%;
-  margin-top: 5%;
-  z-index: 2;
-  float: right;
-  clear: both;
+input.qte {
+    color: #9af47c;
+    opacity: 0.75;
+    text-shadow: 2px 2px 5px #222222;
+    font-family: 'Aclonica';
+    font-size: 35px;
+    font-style: italic;
+    text-align: center;
+    width: 150px;
+    margin-right: 5%;
+    margin-top: 5%;
+    z-index: 2;
+    float: right;
+    clear: both;
 }
 
+#addButton {
+    float: right;
+    margin-right: 5%;
+    margin-top: 5%;
+    z-index: 2;
+    background-color: #31b93f;
+    box-shadow: 2px 2px 5px #222222;
+    clear: both;
+}
 
-#addButton{
-  
-  float: right;
- 
-  margin-right: 5%;
-  margin-top: 5%;
-  z-index:2;
-  background-color:#31b93f;
-  box-shadow: 2px 2px 5px #222222;
- clear: both;
+#validButton {
+    float: center;
+    margin-top: 5%;
+    z-index: 2;
+    background-color: #31b93f;
+    box-shadow: 2px 2px 5px #222222;
+    clear: both;
 }

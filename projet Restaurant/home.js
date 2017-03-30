@@ -1,6 +1,7 @@
-    var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies']);
+    var monApp = angular.module('monAppli', ['ngRoute', 'ngAnimate', 'ngCookies', ]);
 
-    monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', function($scope, $animate, $rootScope, $http, $location) {
+    monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', '$window', 
+        function($scope, $animate, $rootScope, $http, $location, $window) {
         var vm = this;
         console.log("coucou");
         console.log();
@@ -10,15 +11,43 @@
             $scope.getListePlats();
         }
 
+
         $scope.redirect = function() {
             $location.path('/login');
         }
 
-        $scope.redirectPanier = function(){
+        $scope.reloadRoute = function() {
+            $window.location.reload();
+        }
+
+
+        $scope.redirectPanier = function() {
             $location.path('/monPanier');
         }
 
-        $scope.ajouterAuPanier = function(id) {
+        $scope.validerLaCommande = function() {
+            $http({
+                url: "http://25.66.6.53:8080/restokevina/validpanier.htm",
+                method: "POST",
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    id: $scope.connected.data.response.session.utilActif.id,
+                }
+            }).then(function(data) {
+                if (data.data.response.retour === "success") {
+                    console.log("ok pour la validation de la commande :D");
+                    $scope.reloadRoute();
+                    $scope.isCommande = null;
+                }
+            }).catch(function(data) {
+                console.log("ajout pas fait");
+            });
+        }
+
+        $scope.ajouterAuPanier = function(id, qte) {
             console.log("ajouterAuPanier" + id);
             $http({
                 url: "http://25.66.6.53:8080/restokevina/ajoutepanier.htm",
@@ -31,9 +60,36 @@
                     platId: id,
                     userId: $scope.connected.data.response.session.utilActif.id,
                     qte: document.getElementById('qte').value
+                    
                 }
             }).then(function(data) {
-                if (data.data.response.retour === "success") {}
+                if (data.data.response.retour === "success") {
+                    $scope.isCommande = data;
+                }
+            }).catch(function(data) {
+                console.log("ajout pas fait");
+            });
+        }
+
+        $scope.supprimerDuPanier = function(id) {
+            console.log("ajouterAuPanier" + id);
+            $http({
+                url: "http://25.66.6.53:8080/restokevina/removefrompanier.htm",
+                method: "POST",
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    platId: id,
+                    userId: $scope.connected.data.response.session.utilActif.id,
+                    qte: document.getElementById('qte').value
+                }
+            }).then(function(data) {
+                if (data.data.response.retour === "success") {
+                    //$scope.reloadRoute();
+                    $scope.getPanier();
+                }
             }).catch(function(data) {
                 console.log("ajout pas fait");
             });
@@ -52,42 +108,11 @@
             }).then(function(data) {
                 if (data.data.response.retour === "success") {
                     console.log("déconnexion effectuée")
-                $scope.connected = null;
-                //[].forEach.call(document.querySelectorAll('.navbar'), function (el) {
-                  //  el.style.visibility = 'hidden';
-               // });          
-            }
-        }).catch(function(data) {
-            console.log("déconnexion pas effectuée");
-        });
-    }
-
-    $scope.checkIfConnected = function() {
-        console.log("entrée dans le checkIfConnected");
-        $http({
-            url: "http://25.66.6.53:8080/restokevina/getsession.htm",
-            method: "GET",
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function(data) {
-            if (data.data.response.retour === "success") {
-                console.log(data.data);
-                if (data.data.response.session.utilActif !== null) {
-                    $scope.connected = data;
-                    console.log("data" + data.data);
-                    console.log("Je suis connecté :" + data.data.response.session.utilActif.nom);
-                    console.log($scope.connected.data.response.session.utilActif.nom);
-                    console.log($scope.connected);
-                } else {
-                    console.log("je met $scope.connected à null (index)");
                     $scope.connected = null;
                     //[].forEach.call(document.querySelectorAll('.navbar'), function (el) {
                     //  el.style.visibility = 'hidden';
                     // });          
                 }
-              }
             }).catch(function(data) {
                 console.log("déconnexion pas effectuée");
             });
@@ -121,26 +146,26 @@
             });
         }
 
-    $scope.getListePlats = function() {
-        console.log("entrée dans le getListePlats");
-        $http({
-            url: "http://25.66.6.53:8080/restokevina/lesplatstrie.htm",
-            method: "GET",
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function(data) {
-            if (data.data.response.retour === "success") {
-                console.log(data.data);
-                $scope.listeEntrees = data.data.response.listeEntree;
-                $scope.listePlats = data.data.response.listePlatPrinc;
-                $scope.listeDesserts = data.data.response.listeDessert;
-            }
-        }).catch(function(data) {
-            console.log("GetSession de l'index n'est pas passé");
-        });
-      }
+        $scope.getListePlats = function() {
+            console.log("entrée dans le getListePlats");
+            $http({
+                url: "http://25.66.6.53:8080/restokevina/lesplatstrie.htm",
+                method: "GET",
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(data) {
+                if (data.data.response.retour === "success") {
+                    console.log(data.data);
+                    $scope.listeEntrees = data.data.response.listeEntree;
+                    $scope.listePlats = data.data.response.listePlatPrinc;
+                    $scope.listeDesserts = data.data.response.listeDessert;
+                }
+            }).catch(function(data) {
+                console.log("GetSession de l'index n'est pas passé");
+            });
+        }
 
         $scope.getPanier = function() {
             console.log("entrée dans le getPanier");
@@ -157,7 +182,8 @@
             }).then(function(data) {
                 if (data.data.response.retour === "success") {
                     console.log(data.data);
-                    $scope.monPanier = data;
+                    $scope.monPanier = data.data;
+                    console.log("monPanier", $scope.monPanier.response.retour);
                 } else {
                     console.log("pas de panier :c")
                 }
@@ -226,6 +252,20 @@
 
     }]);
 
+    monApp.directive('elemReady', function($parse) {
+        return {
+            restrict: 'A',
+            link: function($scope, elem, attrs) {
+                elem.ready(function() {
+                    $scope.$apply(function() {
+                        var func = $parse(attrs.elemReady);
+                        func($scope);
+                    })
+                })
+            }
+        }
+    })
+
 
     monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider
@@ -253,11 +293,11 @@
                 templateUrl: 'log/register/register.view.html',
                 controllerAs: 'vm'
             }).when('/monPanier', {
-                    controller: 'LoginController',
-                    templateUrl: 'panier.html'
+                controller: 'LoginController',
+                templateUrl: 'panier.html'
             }).when('/tmp', {
-                    controller: 'LoginController',
-                    templateUrl: 'tmp.html'
+                controller: 'LoginController',
+                templateUrl: 'tmp.html'
             }).otherwise({
                 redirectTo: '/home'
             });
