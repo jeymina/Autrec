@@ -210,6 +210,18 @@
             return prix;
         }
 
+        $scope.calculPrixPlatPanier = function(plat) {
+            return $scope.calculPrixPlat(plat.complatPlat) * plat.quantite;
+        }
+
+        $scope.calculPrixPanier = function(panier) {
+            var somme = 0;
+            for(plat in panier){
+                somme += $scope.calculPrixPlatPanier(panier[plat]);
+            }
+            return somme;
+        }
+
         $scope.getListePlats = function() {
             console.log("entrée dans le getListePlats");
             $http({

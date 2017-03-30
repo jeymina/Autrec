@@ -91,6 +91,63 @@ div.buttonsLog{
   top:20px;
   left:20px;
 }
+
+div.panier {
+  margin: auto;
+  margin-top: 20px;
+  height: 100px;
+  width: 50%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #222222;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+h1.panier {
+  position: relative;
+  text-align: left;
+  margin-left: 20px;
+  font-family: 'Alex Brush';
+  font-size: 30px;
+  z-index: 2;
+}
+
+p.panier {
+  position: relative;
+  text-align: left;
+  margin-left: 20px;
+  z-index: 2;
+}
+
+input.panier {
+  float: right;
+  vertical-align: middle;
+  display: block;
+  margin-right: 20px;
+  margin-top: 22px;
+  color: #9af47c;
+  text-shadow: 2px 2px 5px #222222;
+  font-family: 'Aclonica';
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+
+  width: 100px;
+  height: 30px;
+  z-index: 2;
+}
+
+#addButtonPanier {
+  float: right;
+  vertical-align: middle;
+  display: block;
+  margin-right: 30px;
+  margin-top: 20px;
+  z-index: 2;
+  background-color: #31b93f;
+  box-shadow: 2px 2px 5px #222222;
+}
+
 div.plat {
   margin: auto;
   margin-top: 20px;
@@ -162,7 +219,7 @@ input.qte {
 
 #validButton {
   float: center;
-  margin-top: 5%;
+  margin-top: 10px;
   z-index: 2;
   background-color: #31b93f;
   box-shadow: 2px 2px 5px #222222;

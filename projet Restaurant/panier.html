@@ -2,11 +2,15 @@
 <div id="navbar"></div>
 <h1>Votre panier</h1>
 
-<div class="plat" ng-repeat="plat in monPanier.response.commande.listComPlat">
-    <p class="plat">{{plat.complatPlat.nom}} x {{plat.quantite}}</p>
-    <input type="number" class="qte" id="qte{{plat.complatPlat.id}}" name="qte" value="0" min="0" max="{{plat.quantite}}"/>
-    <button id="addButton" class="btn btn-primary"  ng-click="supprimerDuPanier(plat.complatPlat.id, plat.complatPlat.nom)">Supprimer du panier</button>
+<div class="panier" ng-repeat="plat in monPanier.response.commande.listComPlat">
+	<div style="float: left; vertical-align: center;">
+	    <h1 class="panier">{{plat.complatPlat.nom}}</h1>
+	    <p class="panier">** Quantite : {{plat.quantite}}  ** Montant total : {{calculPrixPlatPanier(plat)}} € **</p>
+	</div>
+    <button id="addButtonPanier" class="btn btn-primary"  ng-click="supprimerDuPanier(plat.complatPlat.id, plat.complatPlat.nom)">Supprimer du panier</button>
+    <input class="panier" type="number" id="qte{{plat.complatPlat.id}}" name="qte" value="0" min="0" max="{{plat.quantite}}"/>
 </div>
 <div ng-show="monPanier != null">
+	<p style="margin-top: 10px; font-size: 20px;">Montant de la commande : {{calculPrixPanier(monPanier.response.commande.listComPlat)}} €</p>
     <button id="validButton" class="btn btn-primary"  ng-click="validerLaCommande()">Valider la commande</button>
 </div>
