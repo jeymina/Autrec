@@ -256,7 +256,7 @@ menu[0][1] = new Item("<div align='right'>Accueil</div>", '#/home', '', dim1, 5,
 menu[0][2] = new Item("<div align='right'>Entr&eacute;es</div>", '#/entrees', '', dim1, 5, 0);
 menu[0][3] = new Item("<div align='right'>Plats </div>", '#/plats', '', dim1, 5, 0);
 menu[0][4] = new Item("<div align='right'> Desserts </div>", '#/desserts', '', dim1, 5, 0);
-menu[0][5] = new Item("<div align='right'> Contact</div>", '"/contact"', '', dim1, 5, 0);
+menu[0][5] = new Item("<div align='right'> Mon Panier</div>", '#/tmp', '', dim1, 5, 0);
 
 
 menu[1] = new Array();
