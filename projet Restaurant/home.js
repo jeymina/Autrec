@@ -121,7 +121,6 @@
             });
         }
 
-
     $scope.getListePlats = function() {
         console.log("entrée dans le getListePlats");
         $http({
