@@ -20,13 +20,13 @@ public class IngredientDAO {
 	
 	public static void createIngredient(Ingredient unIngredient) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unIngredient);
+		DAO.getEM().merge(unIngredient);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updateIngredient(Ingredient unIngredient) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unIngredient);
+		DAO.getEM().merge(unIngredient);
 		DAO.getEM().getTransaction().commit();
 	}
 	

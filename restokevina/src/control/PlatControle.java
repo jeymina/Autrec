@@ -24,7 +24,7 @@ public class PlatControle {
 	
 	@RequestMapping(value="/lesplatstrie",method=RequestMethod.GET)
 	public @ResponseBody ResponseBean lesplatstrie(){
-		System.out.println("getLesplatstriees");
+		System.out.println("DEB ** getLesplatstriees");
 		ResponseBean response = new ResponseBean();
 		List<Plat> listPlat = PlatDAO.getListePlat();
 		List<Plat> listEntree = new ArrayList<Plat>();
@@ -43,6 +43,8 @@ public class PlatControle {
 		response.getResponse().put("listeEntree", listEntree);
 		response.getResponse().put("listePlatPrinc", listPlatPrinc);
 		response.getResponse().put("listeDessert", listDessert);
+
+		System.out.println("FIN ** getLesplatstriees");
 		return response;
 	}
 	

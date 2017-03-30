@@ -1,5 +1,8 @@
 package control;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bean.Com_Plat;
 import bean.Commande;
 import bean.Plat;
+import bean.Utilisateur;
 import dao.CommandeDAO;
 import dao.PlatDAO;
 import dao.UtilisateurDAO;
@@ -55,11 +59,60 @@ public class CommandeControle {
 		return response;
 	}
 
+	@RequestMapping(value="/validpanier",method=RequestMethod.POST)
+	public  @ResponseBody ResponseBean validpanier(@RequestBody @Valid IdRequest request, BindingResult bres) {
+		ResponseBean response = new ResponseBean();
+		int userId;
+		try{			
+			userId = Integer.parseInt(request.getId());
+		}catch (NumberFormatException e) {
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Entier attendu pour le paramètre 'id'");
+			return response;
+		}
+		List<Commande> list_cmd = CommandeDAO.getCommandeEnCour(userId);
+		if(list_cmd == null || list_cmd.isEmpty()){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Aucune commande active");
+			return response;
+		}
+		if(list_cmd.size() > 1){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Plus d'une commande active");
+			return response;
+		}
+		
+		Commande cmd = list_cmd.get(0);
+		if (cmd == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message", "Commande mal initialisee Null Pointeur");
+			return response;
+		}
+		
+		Calendar calendar = Calendar.getInstance();
+		Date now = calendar.getTime();
+		//Date inTenDays = now + 10;
+		Timestamp currentTimestamp = new Timestamp(now.getTime());
+		cmd.setDateValidation(currentTimestamp);
+		calendar.add(Calendar.DAY_OF_MONTH, 10);
+		Date inTenDays = calendar.getTime();
+		Timestamp tenDaysTimestamp = new Timestamp(inTenDays.getTime());
+		cmd.setDateLivraison(tenDaysTimestamp);
+		
+		Utilisateur user = UtilisateurDAO.getUtilisateurbyId(userId);
+		cmd.setCommandeAdr(user.getUtilisateurAdr());
+		
+		CommandeDAO.updateCommande(cmd);
+
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		return response;
+	}
+	
 	@RequestMapping(value="/getpanier",method=RequestMethod.GET)
-	public  @ResponseBody ResponseBean getpanier(@RequestParam("id") int id) {
+	public  @ResponseBody ResponseBean getpanier(@RequestParam("id") int userId) {
 		ResponseBean response = new ResponseBean();
 		
-		List<Commande> list_cmd = CommandeDAO.getCommandeEnCour(id);
+		List<Commande> list_cmd = CommandeDAO.getCommandeEnCour(userId);
 		if(list_cmd == null || list_cmd.isEmpty()){
 			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
 			response.getResponse().put("message", "Aucune commande active");
@@ -137,7 +190,9 @@ public class CommandeControle {
 		int qteActuelle = complat.getQuantite();
 		if (qte > qteActuelle) qte = qteActuelle;
 		
-		CommandeDAO.removeUneQte(complat, qte);
+		complat.setQuantite(complat.getQuantite()-qte);
+		CommandeDAO.updateComPlat(complat);
+		
 		complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
 		if (complat == null){
 			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
@@ -194,11 +249,13 @@ public class CommandeControle {
 
 		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
 		if (complat != null){
-			CommandeDAO.ajouteUneQte(complat, qte);			
+			complat.setQuantite(complat.getQuantite()+qte);
+			CommandeDAO.updateComPlat(complat);			
 		} else {
 			complat = new Com_Plat();
 			complat.setComplatCom(cmd);
-			complat.setComplatPlat(PlatDAO.getPlatById(platId));
+			Plat plat = PlatDAO.getPlatById(platId);
+			complat.setComplatPlat(plat);
 			complat.setQuantite(qte);
 			CommandeDAO.createComPlat(complat);
 		}	

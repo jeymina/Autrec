@@ -21,13 +21,13 @@ public class ModeDAO {
 	
 	public static void createMode(Mode unMode) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unMode);
+		DAO.getEM().merge(unMode);
 		DAO.getEM().getTransaction().commit();
 	}
 
 	public static void updateMode(Mode unMode) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unMode);
+		DAO.getEM().merge(unMode);
 		DAO.getEM().getTransaction().commit();
 	}
 	

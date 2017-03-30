@@ -21,13 +21,13 @@ public class CategorieDAO {
 
 	public static void createCategorie(Categorie uneCategorie) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneCategorie);
+		DAO.getEM().merge(uneCategorie);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updateCategorie(Categorie uneCategorie) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneCategorie);
+		DAO.getEM().merge(uneCategorie);
 		DAO.getEM().getTransaction().commit();
 	}
 	

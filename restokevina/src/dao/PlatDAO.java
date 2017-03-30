@@ -20,14 +20,14 @@ public class PlatDAO {
 	}
 	
 	public static void createPlat(Plat unPlat) {
-		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unPlat);
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().merge(unPlat);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updatePlat(Plat unPlat) {
-		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unPlat);
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().merge(unPlat);
 		DAO.getEM().getTransaction().commit();
 	}
 	

@@ -1,6 +1,9 @@
 package control;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -136,13 +139,95 @@ public class TestControle {
 		return Restaurant.getInstance().getSessions();
 	}
 	
-	@RequestMapping(value="/testPanier", method=RequestMethod.GET)
-	public @ResponseBody ResponseBean testPanier() {
-		System.out.println(CommandeControle.computePrice(5));
-		
-		return null;
+	@RequestMapping(value="/testPanierremove", method=RequestMethod.GET)
+	public @ResponseBody ResponseBean testPanierremove() {
+		ResponseBean response = new ResponseBean();
+		int userId = 6;
+		int platId = 7;
+		int qte = 10;
 
+
+		List<Commande> l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour == null || l_commandeEnCour.isEmpty()){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande en cours trouvée");
+			return response;
+		}
+		if (l_commandeEnCour.size() > 1){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Plus d'une commande en cours trouvée");
+			return response;
+		}
+		Commande cmd = l_commandeEnCour.get(0);
+		if (cmd == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Commande en cours égale à NULL");
+			return response;
+		}
+		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande pour ce plat trouvée");
+			return response;
+		}
 		
+		int qteActuelle = complat.getQuantite();
+		if (qte > qteActuelle) qte = qteActuelle;
+		
+		complat.setQuantite(complat.getQuantite()-qte);
+		CommandeDAO.updateComPlat(complat);
+		
+		complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat == null){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Aucune commande pour ce plat trouvée (apres modif QTE)");
+			return response;
+		}
+		if (complat.getQuantite() <= 0){
+			CommandeDAO.removeComPla(complat);
+		}
+		
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		return response;
+	}
+	
+	@RequestMapping(value="/testPanierAjout", method=RequestMethod.GET)
+	public @ResponseBody ResponseBean testPanierAjout() {
+		ResponseBean response = new ResponseBean();		
+		int userId = 6;
+		int platId = 7;
+		int qte = 10;
+
+		List<Commande> l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour.size() == 0){
+			Commande cmd = new Commande();
+			cmd.setCommandeUtil(UtilisateurDAO.getUtilisateurbyId(userId));
+			CommandeDAO.createCommande(cmd);
+		}
+		l_commandeEnCour = CommandeDAO.getCommandeEnCour(userId);
+		if (l_commandeEnCour.size() == 0){
+			response.getResponse().put(ResponseBean.RETOUR, ResponseBean.FAILED);
+			response.getResponse().put("message","Echec lors de la création d'une commande");
+			return response;
+		}
+		Commande cmd = l_commandeEnCour.get(0);
+
+		Com_Plat complat = CommandeDAO.getComPlaById(cmd.getId(), platId);
+		if (complat != null){
+			complat.setQuantite(complat.getQuantite()+qte);
+			CommandeDAO.updateComPlat(complat);			
+		} else {
+			complat = new Com_Plat();
+			complat.setComplatCom(cmd);
+			Plat plat = PlatDAO.getPlatById(platId);
+			complat.setComplatPlat(plat);
+			complat.setQuantite(qte);
+			CommandeDAO.createComPlat(complat);
+		}	
+
+		response.getResponse().put(ResponseBean.RETOUR, ResponseBean.SUCCESS);
+		response.getResponse().put("idCmd", cmd.getId());
+		return response;
 	}
 	
 	

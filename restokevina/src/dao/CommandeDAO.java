@@ -20,53 +20,12 @@ public class CommandeDAO {
 		return uneCommande;
 	}
 	
-	public static void createCommande(Commande uneCommande) {
-		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneCommande);
-		DAO.getEM().getTransaction().commit();
-	}
-	
-	public static void updateCommande(Commande uneCommande) {
-		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneCommande);
-		DAO.getEM().getTransaction().commit();
-	}
-	
-	public static void deleteCommande(int id) {
-		Commande uneCommande = DAO.getEM().find(Commande.class, id);
-		if (uneCommande != null) {
-			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-			DAO.getEM().remove(uneCommande);
-			DAO.getEM().getTransaction().commit();			
-		}
-	}
-
-	public static List<Commande> getCommandeEnCour(int userid) {
-		String req = "SELECT a FROM Commande a, Utilisateur b WHERE a.commandeUtil=b.id AND b.id=:userid AND a.dateValidation=NULL";
-		TypedQuery<Commande> query = DAO.getEM().createQuery(req, Commande.class);
-		query.setParameter("userid", userid);
-		List<Commande> cmd;
-		cmd = query.getResultList();
-		return cmd;
-	}
-	
-	public static void ajouteUneQte(Com_Plat complat, int qte) {
-		DAO.getEM().getTransaction().begin();
-		complat.setQuantite(complat.getQuantite()+qte);
-		DAO.getEM().getTransaction().commit();	
-	}
-
-	public static void removeUneQte(Com_Plat complat, int qte) {
-		DAO.getEM().getTransaction().begin();
-		complat.setQuantite(complat.getQuantite()-qte);
-		DAO.getEM().getTransaction().commit();	
-		
-	}
-
-	public static void createComPlat(Com_Plat complat) {
-		DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(complat);
-		DAO.getEM().getTransaction().commit();
+	public static List<Com_Plat> getComPlaById(int comId) {
+		System.out.println("***DEB getComPlaById : comId="+comId);
+		String req = "SELECT a FROM Com_Plat a, Commande b WHERE a.complatCom=b.id AND b.id=:comId";
+		TypedQuery<Com_Plat> query = DAO.getEM().createQuery(req, Com_Plat.class);
+		query.setParameter("comId", comId);
+		return query.getResultList();
 	}
 
 	public static Com_Plat getComPlaById(int comId, int platId) {
@@ -82,17 +41,47 @@ public class CommandeDAO {
 			System.err.println("Pas de commande avec les infos comId='"+comId+"' platId='"+platId+"' trouvé");
 			return null;
 		}
-
+	
 		System.out.println("***END getComPlaById : comId="+compla.getComplatCom().getId()+" platId="+compla.getComplatPlat().getId());
 		return compla;
 	}
 
-	public static List<Com_Plat> getComPlaById(int comId) {
-		System.out.println("***DEB getComPlaById : comId="+comId);
-		String req = "SELECT a FROM Com_Plat a, Commande b WHERE a.complatCom=b.id AND b.id=:comId";
-		TypedQuery<Com_Plat> query = DAO.getEM().createQuery(req, Com_Plat.class);
-		query.setParameter("comId", comId);
-		return query.getResultList();
+	public static void createCommande(Commande uneCommande) {
+		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
+		DAO.getEM().merge(uneCommande);
+		DAO.getEM().getTransaction().commit();
+	}
+	
+	public static void createComPlat(Com_Plat complat) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().persist(complat);
+		DAO.getEM().getTransaction().commit();
+		DAO.getEM().clear();
+	}
+
+	public static void updateCommande(Commande uneCommande) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().merge(uneCommande);
+		DAO.getEM().getTransaction().commit();
+		DAO.getEM().clear();
+	}
+	
+	public static void updateComPlat(Com_Plat complat) {
+		DAO.getEM().getTransaction().begin();
+		DAO.getEM().merge(complat);
+		DAO.getEM().getTransaction().commit();
+		DAO.getEM().clear();
+		
+	}
+
+	public static void deleteCommande(int id) {
+		Commande uneCommande = DAO.getEM().find(Commande.class, id);
+		if (uneCommande != null) {
+			if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
+			DAO.getEM().remove(uneCommande);
+			DAO.getEM().getTransaction().commit();	
+			DAO.getEM().clear();		
+		}
 	}
 
 	public static void removeComPla(Com_Plat complat) {
@@ -100,6 +89,16 @@ public class CommandeDAO {
 			DAO.getEM().getTransaction().begin();
 			DAO.getEM().remove(complat);
 			DAO.getEM().getTransaction().commit();
+			DAO.getEM().clear();
 		}
+	}
+
+	public static List<Commande> getCommandeEnCour(int userid) {
+		String req = "SELECT a FROM Commande a, Utilisateur b WHERE a.commandeUtil=b.id AND b.id=:userid AND a.dateValidation=NULL";
+		TypedQuery<Commande> query = DAO.getEM().createQuery(req, Commande.class);
+		query.setParameter("userid", userid);
+		List<Commande> cmd;
+		cmd = query.getResultList();
+		return cmd;
 	}
 }

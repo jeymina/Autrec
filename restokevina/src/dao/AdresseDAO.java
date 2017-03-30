@@ -37,14 +37,14 @@ public class AdresseDAO {
 	
 	public static void createAdresse(Adresse uneAdresse) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneAdresse);
+		DAO.getEM().merge(uneAdresse);
 		DAO.getEM().getTransaction().commit();
 
 	}
 
 	public static void updateAdresse(Adresse uneAdresse) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(uneAdresse);
+		DAO.getEM().merge(uneAdresse);
 		DAO.getEM().getTransaction().commit();
 	}
 

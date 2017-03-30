@@ -21,13 +21,13 @@ public class PaiementDAO {
 	
 	public static void createPaiement(Paiement unPaiement) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unPaiement);
+		DAO.getEM().merge(unPaiement);
 		DAO.getEM().getTransaction().commit();
 	}
 	
 	public static void updatePaiement(Paiement unPaiement) {
 		if (!DAO.getEM().getTransaction().isActive()) DAO.getEM().getTransaction().begin();
-		DAO.getEM().persist(unPaiement);
+		DAO.getEM().merge(unPaiement);
 		DAO.getEM().getTransaction().commit();
 	}
 	
