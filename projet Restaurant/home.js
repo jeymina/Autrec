@@ -109,6 +109,7 @@
                 if (data.data.response.retour === "success") {
                     console.log("déconnexion effectuée")
                     $scope.connected = null;
+                    $scope.reloadRoute();
                     //[].forEach.call(document.querySelectorAll('.navbar'), function (el) {
                     //  el.style.visibility = 'hidden';
                     // });          
@@ -240,11 +241,8 @@
                 }
             }).then(function(data) {
                 if (data.data.response.retour === "success") {
-                    if (data.data.response.session.utilActif !== null) {
-                        console.log("chargement barre menu");
-                        $('#navbar').load('navbar.html');
-
-                    }
+                    console.log("chargement barre menu");
+                    $('#navbar').load('navbar.html');
                 }
             });
         });

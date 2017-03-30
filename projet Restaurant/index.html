@@ -30,17 +30,19 @@
     background-size: cover; /* version standardisée */
     }
     </style>
-    <div ng-show="connected !== null" style=" position: relative; top:200px;">
-      <p> bonjour {{connected.data.response.session.utilActif.nom}} :D <a ng-click = logout() class="btn btn-primary">Logout</a></p>
-    </div>
     <div id="navbar"></div>
-    <div ng-show="connected === null">
-      <p><a ng-click=redirect() class="btn btn-primary">Login</a></p>
-    </div>
-    
-    
+
   </head>
-  <body id="carousel" class="ng-view">
+  <body class="ng-view">
+
+    <div ng-show="connected !== null" style="position: relative; top:200px;">
+      <p>Bonjour {{connected.data.response.session.utilActif.nom}} :D</p>
+      <a ng-click = logout() class="btn btn-primary">Logout</a>
+    </div>
+    <div ng-show="connected === null">
+      <a ng-click=redirect() class="btn btn-primary" style="position: relative; top:200px;">Login</a>
+    </div>
+    <div id="carousel">
     <p>&nbsp;</p>
     <!--
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
