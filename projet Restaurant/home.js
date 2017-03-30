@@ -2,91 +2,96 @@
 
     monApp.controller('appCtrl', ['$scope', '$animate', '$rootScope', '$http', '$location', '$window', 
         function($scope, $animate, $rootScope, $http, $location, $window) {
-        var vm = this;
-        console.log("coucou");
-        console.log();
+            var vm = this;
+            console.log("coucou");
+            console.log();
 
-        $scope.init = function() {
-            $scope.checkIfConnected();
-            $scope.getListePlats();
-        }
-
-
-        $scope.redirect = function() {
-            $location.path('/login');
-        }
-
-        $scope.reloadRoute = function() {
-            $window.location.reload();
-        }
+            $scope.init = function() {
+                $scope.checkIfConnected();
+                $scope.getListePlats();
+            }
 
 
-        $scope.redirectPanier = function() {
-            $location.path('/monPanier');
-        }
+            $scope.redirect = function() {
+                $location.path('/login');
+            }
 
-        $scope.validerLaCommande = function() {
-            $http({
-                url: "http://25.66.6.53:8080/restokevina/validpanier.htm",
-                method: "POST",
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    id: $scope.connected.data.response.session.utilActif.id,
+            $scope.reloadRoute = function() {
+                $window.location.reload();
+            }
+
+
+            $scope.redirectPanier = function() {
+                $location.path('/monPanier');
+            }
+
+            $scope.validerLaCommande = function() {
+                $http({
+                    url: "http://25.66.6.53:8080/restokevina/validpanier.htm",
+                    method: "POST",
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        id: $scope.connected.data.response.session.utilActif.id,
+                    }
+                }).then(function(data) {
+                    if (data.data.response.retour === "success") {
+                        console.log("ok pour la validation de la commande :D");
+                        $scope.reloadRoute();
+                        $scope.isCommande = null;
+                    }
+                }).catch(function(data) {
+                    console.log("ajout pas fait");
+                });
+            }
+
+            $scope.ajouterAuPanier = function(id, qte) {
+                console.log("ajouterAuPanier" + id);
+                if( confirm("tu veux vraiment ajouter cette merde dans ton panier ? ")){
+                    $http({
+                        url: "http://25.66.6.53:8080/restokevina/ajoutepanier.htm",
+                        method: "POST",
+                        withCredentials: true,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+                            platId: id,
+                            userId: $scope.connected.data.response.session.utilActif.id,
+                            qte: document.getElementById('qte').value
+
+                        }
+                    }).then(function(data) {
+
+                        if (data.data.response.retour === "success") {
+                            $scope.isCommande = data;
+                        }
+
+                    }).catch(function(data) {
+                        console.log("ajout pas fait");
+                    });
                 }
-            }).then(function(data) {
-                if (data.data.response.retour === "success") {
-                    console.log("ok pour la validation de la commande :D");
-                    $scope.reloadRoute();
-                    $scope.isCommande = null;
-                }
-            }).catch(function(data) {
-                console.log("ajout pas fait");
-            });
-        }
+            }
 
-        $scope.ajouterAuPanier = function(id, qte) {
-            console.log("ajouterAuPanier" + id);
-            $http({
-                url: "http://25.66.6.53:8080/restokevina/ajoutepanier.htm",
-                method: "POST",
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    platId: id,
-                    userId: $scope.connected.data.response.session.utilActif.id,
-                    qte: document.getElementById('qte').value
-                    
-                }
-            }).then(function(data) {
-                if (data.data.response.retour === "success") {
-                    $scope.isCommande = data;
-                }
-            }).catch(function(data) {
-                console.log("ajout pas fait");
-            });
-        }
-
-        $scope.supprimerDuPanier = function(id) {
-            console.log("ajouterAuPanier" + id);
-            $http({
-                url: "http://25.66.6.53:8080/restokevina/removefrompanier.htm",
-                method: "POST",
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    platId: id,
-                    userId: $scope.connected.data.response.session.utilActif.id,
-                    qte: document.getElementById('qte').value
-                }
-            }).then(function(data) {
-                if (data.data.response.retour === "success") {
+            $scope.supprimerDuPanier = function(id) {
+                console.log("ajouterAuPanier" + id);
+                if( confirm("tu veux vraiment retirer cette merde de ton panier ? ")){
+                    $http({
+                        url: "http://25.66.6.53:8080/restokevina/removefrompanier.htm",
+                        method: "POST",
+                        withCredentials: true,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+                            platId: id,
+                            userId: $scope.connected.data.response.session.utilActif.id,
+                            qte: document.getElementById('qte').value
+                        }
+                    }).then(function(data) {
+                        if (data.data.response.retour === "success") {
                     //$scope.reloadRoute();
                     $scope.getPanier();
                 }
@@ -94,22 +99,23 @@
                 console.log("ajout pas fait");
             });
         }
+    }
 
 
-        $scope.logout = function() {
-            $http({
-                url: "http://25.66.6.53:8080/restokevina/deconnexion.htm",
-                method: "POST",
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {}
-            }).then(function(data) {
-                if (data.data.response.retour === "success") {
-                    console.log("déconnexion effectuée")
-                    $scope.connected = null;
-                    $scope.reloadRoute();
+    $scope.logout = function() {
+        $http({
+            url: "http://25.66.6.53:8080/restokevina/deconnexion.htm",
+            method: "POST",
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {}
+        }).then(function(data) {
+            if (data.data.response.retour === "success") {
+                console.log("déconnexion effectuée")
+                $scope.connected = null;
+                $scope.reloadRoute();
                     //[].forEach.call(document.querySelectorAll('.navbar'), function (el) {
                     //  el.style.visibility = 'hidden';
                     // });          
@@ -267,36 +273,36 @@
 
     monApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider
-            .when("/home", {
-                templateUrl: "home.html",
-                controller: "appCtrl"
-            })
-            .when("/desserts", {
-                templateUrl: "desserts.html",
-                controller: "appCtrl"
-            })
-            .when("/entrees", {
-                templateUrl: "entrees.html",
-                controller: "appCtrl"
-            })
-            .when("/plats", {
-                templateUrl: "plats.html",
-                controller: "appCtrl"
-            }).when('/login', {
-                controller: 'LoginController',
-                templateUrl: 'log/login/login.view.html',
-                controllerAs: 'vm'
-            }).when('/register', {
-                controller: 'RegisterController',
-                templateUrl: 'log/register/register.view.html',
-                controllerAs: 'vm'
-            }).when('/monPanier', {
-                controller: 'LoginController',
-                templateUrl: 'panier.html'
-            }).when('/tmp', {
-                controller: 'LoginController',
-                templateUrl: 'tmp.html'
-            }).otherwise({
-                redirectTo: '/home'
-            });
+        .when("/home", {
+            templateUrl: "home.html",
+            controller: "appCtrl"
+        })
+        .when("/desserts", {
+            templateUrl: "desserts.html",
+            controller: "appCtrl"
+        })
+        .when("/entrees", {
+            templateUrl: "entrees.html",
+            controller: "appCtrl"
+        })
+        .when("/plats", {
+            templateUrl: "plats.html",
+            controller: "appCtrl"
+        }).when('/login', {
+            controller: 'LoginController',
+            templateUrl: 'log/login/login.view.html',
+            controllerAs: 'vm'
+        }).when('/register', {
+            controller: 'RegisterController',
+            templateUrl: 'log/register/register.view.html',
+            controllerAs: 'vm'
+        }).when('/monPanier', {
+            controller: 'LoginController',
+            templateUrl: 'panier.html'
+        }).when('/tmp', {
+            controller: 'LoginController',
+            templateUrl: 'tmp.html'
+        }).otherwise({
+            redirectTo: '/home'
+        });
     }]);
