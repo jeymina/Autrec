@@ -78,18 +78,6 @@ img {
   width: 400px;
 }
 
-#slides_control {
-  position: absolute;
-  width: 400px;
-  left: 50%;
-  top: 20px;
-  margin-left: -200px;
-}
-
-#carousel {
-  background-color: #000000;
-}
-
 img.plat {
   position: relative;
   height: 100%;
@@ -100,6 +88,27 @@ div.buttonsLog{
   position: absolute;
   top:20px;
   left:20px;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    margin: auto;
+}
+div.container{
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+}
+
+div.descrip{
+  position: absolute;
+  text-align: left;
+  top: 60%;
+  left: 5%;
+  width: 750px;
+  height: 500px;
 }
 
 div.panier {
@@ -161,7 +170,7 @@ div.plat {
   margin: auto;
   margin-top: 20px;
   height: 350px;
-  width: 50%;
+  width: 700px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px #222222;
   background-size: 75% 100%;

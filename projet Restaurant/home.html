@@ -2,8 +2,58 @@
 <div class="buttonsLog">
 	<a ng-show="connected !== null" ng-click=logout() class="btn btn-primary">Logout</a>
 	<a ng-show="connected === null" ng-click=redirect() class="btn btn-primary">Login</a>
+	<p ng-show="connected !== null">Bonjour {{connected.data.response.session.utilActif.prenom}}</p>
 </div>
 <div style="position: relative; top: 20px">
 	<h1 class="titreResto">Resto Kevina</h1>
 </div>
-<!--<p ng-show="connected !== null">Bienvenue {{connected.data.response.session.utilActif.nom}}</p>-->
+
+<div class="container">
+	<br>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="border: 1px solid gray; border-radius: 50px; border-radius: 5px; box-shadow: 5px 5px 5px #222222;">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active" style="height: 200px; width: 500px;">
+				<img src="pics/boeuf.jpg" style="position: relative; height: 100%;  width: 100%;">
+			</div>
+
+			<div class="item" style="height: 200px; width: 500px;">
+				<img src="pics/kouignAmann.jpg" style="position: relative; height: 100%;  width: 100%;">
+			</div>
+
+			<div class="item" style="height: 200px; width: 500px;">
+				<img src="pics/saladeRiz.jpg" style="position: relative; height: 100%;  width: 100%;">
+			</div>
+
+			<div class="item" style="height: 200px; width: 500px;">
+				<img src="pics/soupeTomate.jpg" style="position: relative; height: 100%;  width: 100%;">
+			</div>
+
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			</a>
+			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="descrip">
+	<p>
+		Le restaurant "Kévina" fait partie de ces institutions de la Gastronomie Française. Avec une sélection de produits de qualité, triés drastiquement sur le volet par les Chefs : Colin Jérôme, Fourre Wiliam, Le Scornet Matthieu et Ruelle Sébastien. Vous trouverez une cuisine faite de simplicité, mêlée d'une touche de perfection gastronomique.
+	</p>
+	<p>
+		Ce restaurant cosy de 60 places, fait le bonheur des amoureux de la Cuisine Française, où se mêlent harmonieusement les Stars du show business, les Hommes d'affaires, comme tous les hédonistes, amoureux de la bonne cuisine. 
+	</p>
+	<p>
+		Une cuisine à découvrir ou redécouvrir pour les plaisirs du palais.
+	</p>
+
+</div>
