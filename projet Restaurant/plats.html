@@ -4,7 +4,7 @@
 <div class="plat" ng-repeat="plats in listePlats track by plats.nom" style="background-image: url({{plats.url}})">
   <a class="infobulle" style="color:#9af47c;" href=""> Ingrédients
     <span>
-      <p ng-repeat="ingredient in entree.listIngPlat">
+    <p ng-repeat="ingredient in plats.listIngPlat">
         {{ingredient.ingplatIng.nom}} bite
       </p>
     </span>

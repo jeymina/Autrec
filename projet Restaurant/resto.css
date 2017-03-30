@@ -47,6 +47,20 @@ a:hover span, a:focus span{
   opacity:1;
 }
 
+ a.infobulle{
+  
+  color: #9af47c;
+  text-shadow: 2px 2px 5px #222222;
+  font-family: 'Aclonica';
+  font-size: 15px;
+  font-style: italic;
+  text-align: right;
+  margin-right: 5%;
+  margin-top: 10%;
+  z-index: 2;
+  float: right;
+  clear: both;
+ }
 
 
 img {
