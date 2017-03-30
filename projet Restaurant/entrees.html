@@ -1,10 +1,13 @@
 <div id="navbar"></div>
-
 <h1>Liste des Entrées</h1>
-
 <div class="plat" ng-repeat="entree in listeEntrees track by entree.nom" style="background-image: url({{entree.url}})">
   <p class="plat">{{entree.nom}}</p>
   <p class="prix">{{calculPrixPlat(entree)}} €</p>
   <input type="number" class="qte" id="qte" name="quantity" value="1" min="1" max="99">
   <button id="addButton" class="btn btn-primary" ng-show="connected !== null" ng-click="ajouterAuPanier(entree.id)">Ajouter au panier</button>
+  <a href=""> Passez la souris sur ce lien
+    <span ng-repeat="ingredient in entree.listIngPlat">
+      {{ingredient.nom}} bite
+    </span>
+  </a>
 </div>
