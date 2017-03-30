@@ -30,7 +30,7 @@
                 data: {
                     platId: id,
                     userId: $scope.connected.data.response.session.utilActif.id,
-                    qte: 1
+                    qte: document.getElementById('qte').value
                 }
             }).then(function(data) {
                 if (data.data.response.retour === "success") {}
