@@ -40,7 +40,7 @@
 
         <div class="form-group" ng-class="{ 'has-error': form.cp.$dirty && form.cp.$error.required }">
             <label for="cp">Cp</label>
-            <input type="number" name="cp" id="cp" class="form-control" ng-model="vm.user.cp" required />
+            <input type="number" name="cp" id="cp" class="form-control" ng-model="vm.user.cp" min="0" max="99999" required />
             <span ng-show="form.cp.$dirty && form.cp.$error.required" class="help-block">Cp is required</span>
         </div>
 
