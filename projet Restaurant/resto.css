@@ -105,9 +105,10 @@ div.container{
 div.descrip{
   position: absolute;
   text-align: left;
+  font-size: 20px;
   top: 60%;
   left: 5%;
-  width: 750px;
+  width: 800px;
   height: 500px;
 }
 
@@ -170,7 +171,7 @@ div.plat {
   margin: auto;
   margin-top: 20px;
   height: 350px;
-  width: 700px;
+  width: 800px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px #222222;
   background-size: 75% 100%;

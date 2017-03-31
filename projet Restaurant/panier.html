@@ -24,3 +24,6 @@
 	<p style="margin-top: 10px; font-size: 20px;">Montant de la commande : {{calculPrixPanier(monPanier.response.commande.listComPlat)}} €</p>
     <button id="validButton" class="btn btn-primary"  ng-click="validerLaCommande()">Valider la commande</button>
 </div>
+<div ng-show="monPanier == null">
+	<p style="margin-top: 10px; font-size: 20px;">Vous n'avez pas de panier</p>
+</div>
